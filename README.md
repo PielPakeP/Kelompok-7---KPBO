@@ -7,7 +7,7 @@ Author :
 - 412025026 - Viello Kalisthi Handaya
 - 412025021 - Michael Aaron Sipahutar
 - 412025028 - Steven Feryanta
-- 412025014 - Raffael Benedictus Lolaroh
+- 412025014 - Raffael Benediktus Lolaroh
 
 Project Structure :
 …
