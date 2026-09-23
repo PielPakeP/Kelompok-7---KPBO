@@ -17,3 +17,6 @@ Fitur-Fitur :
 - ⁠Fitur B
 - ⁠Fitur C
 - ⁠etc
+
+Detail :
+https://docs.google.com/document/d/1mCUt6hbIaY4LPlGcHQtKYxlnTpbu51TCQUXpszd_2Js/edit?usp=sharing
