@@ -21,5 +21,8 @@ Fitur-Fitur :
 Detail :
 https://docs.google.com/document/d/1mCUt6hbIaY4LPlGcHQtKYxlnTpbu51TCQUXpszd_2Js/edit?usp=sharing
 
+Animasi Karakter Game:
+https://drive.google.com/drive/folders/1KoG7OrEBeG2kKZDcwH8K1QqbF1FnHvyg
+
 Story :
 https://docs.google.com/document/d/1mCUt6hbIaY4LPlGcHQtKYxlnTpbu51TCQUXpszd_2Js/edit?tab=t.un929ngfiva5
