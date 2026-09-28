@@ -20,3 +20,6 @@ Fitur-Fitur :
 
 Detail :
 https://docs.google.com/document/d/1mCUt6hbIaY4LPlGcHQtKYxlnTpbu51TCQUXpszd_2Js/edit?usp=sharing
+
+Story :
+https://docs.google.com/document/d/1mCUt6hbIaY4LPlGcHQtKYxlnTpbu51TCQUXpszd_2Js/edit?tab=t.un929ngfiva5
