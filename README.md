@@ -24,5 +24,8 @@ https://docs.google.com/document/d/1mCUt6hbIaY4LPlGcHQtKYxlnTpbu51TCQUXpszd_2Js/
 Animasi Karakter Game:
 https://drive.google.com/drive/folders/1KoG7OrEBeG2kKZDcwH8K1QqbF1FnHvyg
 
+Animasi Memory Cardnya:
+https://drive.google.com/drive/folders/1L14KJBEC50wAZgsah6YNxP6uhVQiuOfo?usp=sharing
+
 Story :
 https://docs.google.com/document/d/1mCUt6hbIaY4LPlGcHQtKYxlnTpbu51TCQUXpszd_2Js/edit?tab=t.un929ngfiva5
