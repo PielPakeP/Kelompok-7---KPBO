@@ -1,94 +1,66 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 /**
- * Write a description of class Player here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Pemain di peta. Jalan dengan panah / WASD. Tabrakan dicek lewat MapWorld.isBlocked().
+ *
+ * Gambar (30 x 46 px, kaki di bagian bawah gambar, .png transparan disarankan):
+ *   player_down_1, player_down_2, player_up_1, player_up_2,
+ *   player_left_1, player_left_2, player_right_1, player_right_2
+ * (_1 = berdiri / langkah 1, _2 = langkah 2)
  */
 public class Player extends Actor
 {
-    private GreenfootImage[] walkFrames = new GreenfootImage[4];
-    private int frame = 0;
-    private int animationCounter = 0;
-    private boolean facingLeft = false;
+    private static final int SPEED = 3;
+    private static final String[] DIRS = { "down", "up", "left", "right" };
+    private final GreenfootImage[][] imgs = new GreenfootImage[4][2];
+    private int dir = 0;
+    private int tick = 0;
+    private boolean walking = false;
 
     public Player()
     {
-        walkFrames[0] = new GreenfootImage("1.png");
-        walkFrames[1] = new GreenfootImage("2.png");
-        walkFrames[2] = new GreenfootImage("3.png");
-        walkFrames[3] = new GreenfootImage("4.png");
-        for (int i = 0; i < 4; i++)
-        {
-            walkFrames[i].scale(70, 50);
-        }
-        setImage(walkFrames[0]);        
+        for (int d = 0; d < 4; d++)
+            for (int f = 0; f < 2; f++)
+                imgs[d][f] = Gfx.img("player_" + DIRS[d] + "_" + (f + 1));
+        setImage(imgs[0][0]);
     }
 
     public void act()
     {
-        movement();
+        MapWorld w = (MapWorld) getWorld();
+        if (w == null) return;
+        if (w.isLocked())
+        {
+            walking = false;
+            updateImage();
+            return;
+        }
+
+        int dx = 0, dy = 0;
+        if (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) dx -= SPEED;
+        if (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) dx += SPEED;
+        if (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")) dy -= SPEED;
+        if (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) dy += SPEED;
+        walking = (dx != 0 || dy != 0);
+
+        // gerak per sumbu supaya bisa "menyusur" dinding
+        if (dx != 0)
+        {
+            dir = dx < 0 ? 2 : 3;
+            if (!w.isBlocked(getX() + dx, getY())) setLocation(getX() + dx, getY());
+        }
+        if (dy != 0)
+        {
+            dir = dy < 0 ? 1 : 0;
+            if (!w.isBlocked(getX(), getY() + dy)) setLocation(getX(), getY() + dy);
+        }
+        if (walking) tick++;
+        updateImage();
     }
 
-    private void movement()
+    private void updateImage()
     {
-        boolean moving = false;
-
-        if (Greenfoot.isKeyDown("a"))
-        {
-            setLocation(getX() - 1, getY());
-            facingLeft = true;
-            moving = true;
-        }
-
-        if (Greenfoot.isKeyDown("d"))
-        {
-            setLocation(getX() + 1, getY());
-            facingLeft = false;
-            moving = true;
-        }
-
-        if (Greenfoot.isKeyDown("w"))
-        {
-            setLocation(getX(), getY() - 1);
-            moving = true;
-        }
-
-        if (Greenfoot.isKeyDown("s"))
-        {
-            setLocation(getX(), getY() + 1);
-            moving = true;
-        }
-
-        if (moving)
-        {
-            animateWalk();
-        }
-    }
-
-        private void animateWalk()
-    {
-        animationCounter++;
-
-        if (animationCounter >= 5)
-        {
-            animationCounter = 0;
-            frame++;
-
-        if (frame >= 4)
-        {
-            frame = 0;
-        }
-
-        GreenfootImage image = new GreenfootImage(walkFrames[frame]);
-
-        if (facingLeft)
-        {
-            image.mirrorHorizontally();
-        }
-
-        setImage(image);
-        }
+        int frame = walking ? (tick / 7) % 2 : 0;
+        setImage(imgs[dir][frame]);
     }
 }

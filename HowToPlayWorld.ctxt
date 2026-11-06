@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=HowToPlayWorld
+comment0.text=\r\n\ HOW\ TO\ PLAY\:\ animasi\ demo\ papan\ 2x2\ yang\ berjalan\ otomatis\ (berulang).\r\n\ Setiap\ kartu\ yang\ dibalik\ disertai\ teks\ bantuan/instruksi.\r\n\ Timeline\ memakai\ waktu\ nyata\ (milidetik)\ agar\ tidak\ tergantung\ kecepatan\ Greenfoot.\r\n
+comment1.params=
+comment1.target=HowToPlayWorld()
+comment2.params=
+comment2.target=void\ restartDemo()
+comment3.params=
+comment3.target=void\ stopped()
+comment4.params=
+comment4.target=void\ started()
+comment5.params=
+comment5.target=void\ act()
+comment6.params=s
+comment6.target=void\ runStep(int)
+numComments=7

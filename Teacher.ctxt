@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Teacher
+comment0.text=\r\n\ Guru\ /\ NPC.\ Gambar\:\ teacher_1\ ...\ teacher_4\ (guru\ tiap\ level)\ dan\ teacher_principal\ (Kepala\ Sekolah).\r\n\ Disarankan\ .png\ transparan,\ tinggi\ sekitar\ 230\ px.\r\n
+comment1.params=level
+comment1.target=Teacher(int)
+comment2.params=level\ heightPx
+comment2.target=Teacher(int,\ int)
+comment2.text=heightPx\ >\ 0\ ->\ gambar\ diubah\ ukurannya\ ke\ tinggi\ tersebut\ (proporsi\ tetap).
+comment3.params=imageName\ heightPx
+comment3.target=Teacher(java.lang.String,\ int)
+comment4.params=
+comment4.target=void\ act()
+numComments=5

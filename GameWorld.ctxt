@@ -1,0 +1,30 @@
+#BlueJ class context
+comment0.target=GameWorld
+comment0.text=\r\n\ GAME\:\ papan\ kartu\ memori\ satu\ level.\r\n\ Alur\:\ PREVIEW\ (kartu\ terbuka\ sebentar)\ ->\ PLAYING\ (timer\ 2\ menit)\ ->\ WON\ /\ LOST\ (popup).\r\n\ Menang\ ->\ TalkWorld\ (percakapan\ guru)\ ->\ MapWorld\ (jalan\ ke\ ruangan\ berikutnya).\r\n\ Jumlah\ kartu\:\ level\ 1\ \=\ 8,\ lalu\ tiap\ level\ +2\ pasangan\ (12,\ 16,\ 20).\r\n
+comment1.params=level
+comment1.target=GameWorld(int)
+comment10.params=
+comment10.target=void\ resolvePair()
+comment11.params=leftMs
+comment11.target=void\ win(long)
+comment12.params=
+comment12.target=void\ lose()
+comment13.params=
+comment13.target=void\ goNext()
+comment2.params=
+comment2.target=void\ buildHud()
+comment3.params=
+comment3.target=void\ buildBoard()
+comment4.params=
+comment4.target=void\ stopped()
+comment5.params=
+comment5.target=void\ started()
+comment6.params=
+comment6.target=void\ act()
+comment7.params=now
+comment7.target=void\ doPreview(long)
+comment8.params=now
+comment8.target=void\ doPlaying(long)
+comment9.params=c
+comment9.target=void\ onCardClicked(Card)
+numComments=14

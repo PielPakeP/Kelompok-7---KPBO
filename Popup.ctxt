@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Popup
+comment0.text=\r\n\ Jendela\ popup\ layar\ penuh.\ Gambar\:\ popup\ (480\ x\ 300,\ panel\ di\ tengah\ layar).\r\n\ Opsional\:\ popup_dim\ (900\ x\ 600,\ .png\ hitam\ transparan)\ untuk\ meredupkan\ layar\ di\ belakang.\r\n\ Tombol\ ditambahkan\ oleh\ World\ di\ atasnya.\r\n
+comment1.params=title\ message
+comment1.target=Popup(java.lang.String,\ java.lang.String)
+numComments=2

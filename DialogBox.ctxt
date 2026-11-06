@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=DialogBox
+comment0.text=Kotak\ dialog\ (cerita\ /\ petunjuk).\ Gambar\:\ dialog_box\ (840\ x\ 150,\ akan\ di-scale\ sesuai\ ukuran).
+comment1.params=w\ h
+comment1.target=DialogBox(int,\ int)
+comment2.params=speaker\ text\ hint
+comment2.target=void\ show(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment2.text=speaker\ boleh\ ""\ (tanpa\ nama).\ hint\ \=\ tulisan\ kecil\ di\ kanan\ bawah\ (boleh\ "").
+numComments=3

@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Slider
+comment0.text=Slider\ volume\ 0-100\ dari\ gambar\:\ slider_track,\ slider_fill,\ slider_knob.\ Bisa\ digeser\ dengan\ mouse.
+comment1.params=trackW\ value
+comment1.target=Slider(int,\ int)
+comment2.params=
+comment2.target=int\ getValue()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=v
+comment4.target=void\ setValue(int)
+comment5.params=
+comment5.target=void\ redraw()
+numComments=6

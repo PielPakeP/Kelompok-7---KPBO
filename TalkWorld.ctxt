@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=TalkWorld
+comment0.text=\r\n\ Percakapan\ SETELAH\ level\ selesai\:\ guru\ memberi\ material\ dan\ menunjukkan\ ruangan\ berikutnya.\r\n\ Setelah\ itu\ kembali\ ke\ peta\ (MapWorld)\ dengan\ tujuan\ baru.\r\n
+comment1.params=level
+comment1.target=TalkWorld(int)
+comment2.params=
+comment2.target=void\ showPage()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ finish()
+numComments=5

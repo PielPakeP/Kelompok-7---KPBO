@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Toggle
+comment0.text=Saklar\ ON\ /\ OFF\ dari\ gambar\ toggle_on\ dan\ toggle_off\ (150\ x\ 40).\ Klik\ untuk\ mengganti.
+comment1.params=on
+comment1.target=Toggle(boolean)
+comment2.params=
+comment2.target=boolean\ isOn()
+comment3.params=
+comment3.target=void\ act()
+numComments=4

@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.target=Dialogs
+comment0.text=\r\n\ Semua\ percakapan\ (dialog)\ di\ game.\ Format\ tiap\ baris\:\ {\ "Nama\ pembicara",\ "Teks"\ }.\r\n\ Mau\ ganti\ isi\ cerita?\ Cukup\ edit\ file\ ini.\r\n
+numComments=1

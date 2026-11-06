@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=MaterialBar
+comment0.text=\r\n\ Empat\ slot\ material\ di\ pojok\ atas.\ Gambar\ per\ slot\ (48x48)\:\r\n\ material_1\ ...\ material_4\ (sudah\ didapat)\ dan\ material_1_off\ ...\ material_4_off\ (bayangan\ /\ belum\ didapat).\r\n
+comment1.params=
+comment1.target=MaterialBar()
+comment2.params=
+comment2.target=void\ refresh()
+numComments=3

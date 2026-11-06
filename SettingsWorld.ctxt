@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=SettingsWorld
+comment0.text=\r\n\ SETTINGS\:\ Volume\ (slider),\ Music\ ON/OFF,\ Sound\ Effect\ ON/OFF,\ Volume\ Music,\ Volume\ SFX,\ Fullscreen.\r\n\ Nilai\ disimpan\ di\ GameData\ sehingga\ berlaku\ di\ semua\ layar.\r\n
+comment1.params=
+comment1.target=SettingsWorld()
+comment2.params=
+comment2.target=void\ act()
+numComments=3

@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=MenuWorld
+comment0.text=DASHBOARD\:\ Start\ Game,\ How\ to\ Play,\ Settings,\ Exit\ (+\ konfirmasi)\ dan\ tombol\ Information.
+comment1.params=
+comment1.target=MenuWorld()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ prepare()
+comment3.text=\r\n\ Prepare\ the\ world\ for\ the\ start\ of\ the\ program.\r\n\ That\ is\:\ create\ the\ initial\ objects\ and\ add\ them\ to\ the\ world.\r\n
+numComments=4

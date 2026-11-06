@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Label
+comment0.text=Teks\ di\ layar.\ panel\ \=\ true\ ->\ teks\ diletakkan\ di\ atas\ gambar\ label_bg.
+comment1.params=text\ size\ fg
+comment1.target=Label(java.lang.String,\ int,\ java.awt.Color)
+comment2.params=text\ size\ fg\ panel
+comment2.target=Label(java.lang.String,\ int,\ java.awt.Color,\ boolean)
+comment3.params=t
+comment3.target=void\ setText(java.lang.String)
+comment4.params=
+comment4.target=void\ redraw()
+numComments=5

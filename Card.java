@@ -1,77 +1,85 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 /**
- * Write a description of class Cards here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Satu kartu memori. Punya animasi membalik (flip) dan status: tertutup / terbuka / cocok.
+ * Dua kartu dengan pairId yang sama = satu pasangan.
  */
 public class Card extends Actor
 {
-    private GreenfootImage frontImage;
-    private GreenfootImage backImage;
+    private static final int FLIP_FRAMES = 10;
 
-    private String cardName;
+    private final int pairId;
+    private final String text;
+    private final int w, h;
+    private final int level;
 
-    private boolean isOpen = false;
-    private boolean isMatched = false;
+    private boolean faceUp = false;
+    private boolean matched = false;
+    private int flipFrame = -1;     // -1 = tidak sedang animasi
 
-    public Card(String imageName)
+    private GreenfootImage front;
+    private GreenfootImage back;
+
+    public Card(int pairId, String text, int w, int h, int level)
     {
-        cardName = imageName;
+        this.pairId = pairId;
+        this.text = text;
+        this.w = w;
+        this.h = h;
+        this.level = level;
+        front = makeFront(false);
+        back = makeBack();
+        setImage(back);
+    }
 
-        frontImage = new GreenfootImage(imageName);
-        backImage = new GreenfootImage("1.png");
+    public int getPairId() { return pairId; }
+    public boolean isFaceUp() { return faceUp; }
+    public boolean isMatched() { return matched; }
 
-        frontImage.scale(100, 120);
-        backImage.scale(100, 120);
+    /** Balik kartu: true = tampilkan isi, false = tutup. */
+    public void flip(boolean up)
+    {
+        if (faceUp == up) return;
+        faceUp = up;
+        flipFrame = 0;
+    }
 
-        setImage(backImage);
+    /** Tandai kartu sebagai pasangan yang benar (border hijau). */
+    public void markMatched()
+    {
+        matched = true;
+        front = makeFront(true);
+        if (flipFrame < 0) setImage(front);
     }
 
     public void act()
     {
-        if (Greenfoot.mouseClicked(this))
+        if (flipFrame < 0) return;
+        flipFrame++;
+        int half = FLIP_FRAMES / 2;
+        if (flipFrame >= FLIP_FRAMES)
         {
-            openCard();
+            flipFrame = -1;
+            setImage(faceUp ? front : back);
+            return;
         }
+        boolean showFront = (flipFrame < half) ? !faceUp : faceUp;
+        double scale = (flipFrame < half) ? 1.0 - (double) flipFrame / half : (double) (flipFrame - half) / half;
+        GreenfootImage img = new GreenfootImage(showFront ? front : back);
+        img.scale(Math.max(3, (int) (w * scale)), h);
+        setImage(img);
     }
 
-    public void openCard()
+    // ---------- gambar kartu (dari file gambar) ----------
+    private GreenfootImage makeFront(boolean ok)
     {
-        if (!isOpen && !isMatched)
-        {
-            isOpen = true;
-            setImage(frontImage);
-        }
+        GreenfootImage img = Gfx.img(ok ? "card_front_ok" : "card_front", w, h);
+        Gfx.drawFitted(img, text, 8, 8, w - 16, h - 16, Gfx.TEXT_DARK, 22, 9);
+        return img;
     }
 
-    public void closeCard()
+    private GreenfootImage makeBack()
     {
-        if (!isMatched)
-        {
-            isOpen = false;
-            setImage(backImage);
-        }
-    }
-
-    public boolean isOpen()
-    {
-        return isOpen;
-    }
-
-    public boolean isMatched()
-    {
-        return isMatched;
-    }
-
-    public void setMatched()
-    {
-        isMatched = true;
-    }
-
-    public String getCardName()
-    {
-        return cardName;
+        return Gfx.img("card_back_" + level, w, h);
     }
 }
