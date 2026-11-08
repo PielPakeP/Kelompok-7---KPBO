@@ -82,8 +82,8 @@ public class GameWorld extends BaseWorld
         for (int i = 0; i < totalPairs; i++)
         {
             String[] p = LevelData.PAIRS[level - 1][i];
-            list.add(new Card(i, p[0], cw, ch, level));
-            list.add(new Card(i, p[1], cw, ch, level));
+            list.add(new Card(i, p[0], cw, ch, level, 'a'));
+            list.add(new Card(i, p[1], cw, ch, level, 'b'));
         }
         Collections.shuffle(list);
 
@@ -186,7 +186,6 @@ public class GameWorld extends BaseWorld
     {
         if (c.isFaceUp() || c.isMatched()) return;
         c.flip(true);
-        SoundManager.sfx("flip.wav");
         if (first == null)
         {
             first = c;

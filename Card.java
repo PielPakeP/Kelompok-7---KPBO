@@ -19,18 +19,21 @@ public class Card extends Actor
 
     private GreenfootImage front;
     private GreenfootImage back;
+    private final char side;                       // 'a' atau 'b'
 
-    public Card(int pairId, String text, int w, int h, int level)
+    public Card(int pairId, String text, int w, int h, int level, char side)
     {
         this.pairId = pairId;
         this.text = text;
         this.w = w;
         this.h = h;
         this.level = level;
+        this.side = side;
         front = makeFront(false);
         back = makeBack();
         setImage(back);
     }
+
 
     public int getPairId() { return pairId; }
     public boolean isFaceUp() { return faceUp; }
@@ -71,8 +74,15 @@ public class Card extends Actor
     }
 
     // ---------- gambar kartu (dari file gambar) ----------
+     private String baseName()
+    {
+        return "card_" + level + "_p" + String.format("%02d", pairId + 1) + "_" + side;
+    }
+
     private GreenfootImage makeFront(boolean ok)
     {
+        String n = baseName() + (ok ? "_front_ok" : "_front");
+        if (Gfx.exists(n)) return Gfx.img(n, w, h);
         GreenfootImage img = Gfx.img(ok ? "card_front_ok" : "card_front", w, h);
         Gfx.drawFitted(img, text, 8, 8, w - 16, h - 16, Gfx.TEXT_DARK, 22, 9);
         return img;
@@ -80,6 +90,9 @@ public class Card extends Actor
 
     private GreenfootImage makeBack()
     {
+        String n = baseName() + "_back";
+        if (Gfx.exists(n)) return Gfx.img(n, w, h);
         return Gfx.img("card_back_" + level, w, h);
     }
 }
+

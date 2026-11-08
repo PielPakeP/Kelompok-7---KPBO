@@ -11,14 +11,14 @@ public abstract class BaseWorld extends World
     {
         super(900, 600, 1);
     }
-
-    public void started()
-    {
-        SoundManager.resume();
-    }
-
+    
     public void stopped()
     {
         SoundManager.pause();
+    }
+    
+    public void started()
+    {
+        SoundManager.resume();
     }
 }

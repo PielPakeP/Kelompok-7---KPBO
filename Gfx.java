@@ -1,6 +1,12 @@
 import greenfoot.*;
 import java.awt.Color;
 import java.util.*;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 /**
  * Pemuat gambar + fungsi bantu teks.
@@ -79,19 +85,51 @@ public class Gfx
     }
 
     // ---------- teks ----------
+    private static Font pixelFont = null;
+    private static boolean pixelFontTried = false;
+
+    private static Font loadPixelFont()
+    {
+        if (!pixelFontTried)
+        {
+            pixelFontTried = true;
+            try { pixelFont = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Jersey15-Regular.ttf")); }
+            catch (Exception e) { System.out.println("Font pixel tidak ditemukan, pakai font bawaan: " + e); }
+        }
+        return pixelFont;
+    }
+
+    /** Ukuran lama di kode -> ukuran font pixel. Dibulatkan ke kelipatan 15 supaya tepinya tajam. */
+    private static int pixelSize(int size)
+    {
+        return Math.max(15, (int) Math.round(size * 1.35 / 15.0) * 15);
+    }
+
     public static GreenfootImage text(String s, int size, Color c)
     {
-        if (s == null || s.length() == 0) {
-            s = " ";
-        }
-    
-        return new GreenfootImage(
-            s,
-            size,
-            toGreenfootColor(c),
-            null
-        );
+        if (s == null || s.length() == 0) s = " ";
+        Font base = loadPixelFont();
+        if (base == null) return new GreenfootImage(s, size, toGreenfootColor(c), null);
+
+        Font f = base.deriveFont((float) pixelSize(size));
+        BufferedImage tmp = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g0 = tmp.createGraphics();
+        g0.setFont(f);
+        FontMetrics fm = g0.getFontMetrics();
+        int w = Math.max(1, fm.stringWidth(s)), h = fm.getHeight(), asc = fm.getAscent();
+        g0.dispose();
+
+        GreenfootImage img = new GreenfootImage(w, h);
+        Graphics2D g = img.getAwtImage().createGraphics();
+        g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
+        g.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_OFF);
+        g.setFont(f);
+        g.setColor(c);
+        g.drawString(s, 0, asc);
+        g.dispose();
+        return img;
     }
+
 
     public static void drawCentered(GreenfootImage g, String s, int size, Color c, int cx, int cy)
     {

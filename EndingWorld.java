@@ -16,7 +16,7 @@ public class EndingWorld extends BaseWorld
         addObject(new Label("Total sisa waktu: " + GameData.totalSecondsLeft + " detik", 22, Gfx.TEXT_LIGHT, true), 450, 290);
 
         againBtn = new Button("btn_again", 220, 56);
-        menuBtn = new Button("btn_menu", 220, 56);
+        menuBtn = new Button("btn_menu_wide", 220, 56);
         addObject(againBtn, 340, 360);
         addObject(menuBtn, 560, 360);
         SoundManager.playMusic("bgm_menu.mp3");

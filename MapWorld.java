@@ -82,22 +82,13 @@ public class MapWorld extends BaseWorld
         player = new Player();
         addObject(player, (int) (SPAWN[target][0] * S), (int) (SPAWN[target][1] * S));
 
-        // NPC kepala sekolah (hanya saat percakapan pembuka)
-        if (intro)
-        {
-            addObject(new Teacher("teacher_principal", 50), (int) (800 * S), (int) (330 * S));
-        }
-
         // penanda tujuan
         int[] z = zonesWorld[target];
         addObject(new Marker(), (z[0] + z[2]) / 2, z[1] - 14);
 
         // HUD
-        String goal = (target < 4)
-            ? "Tujuan: " + ZONE_NAME[target] + " (Guru " + LevelData.TEACHER[target] + ")"
-            : "Tujuan: Jembatan sekolah";
-        addObject(new Label(goal, 20, Gfx.TEXT_LIGHT, true), 230, 30);
-        addObject(new MaterialBar(), 790, 34);
+        addObject(new Label("                                     ", 14, Gfx.TEXT_LIGHT, true), 700, 90);
+        addObject(new MaterialBar(), 770, 34);
         addObject(new Label("Panah / WASD: jalan     SPASI: masuk / lanjut", 14, Gfx.TEXT_LIGHT, true), 450, 580);
 
         prompt = new Label("", 16, Gfx.TEXT_LIGHT, true);

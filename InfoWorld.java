@@ -17,8 +17,8 @@ public class InfoWorld extends BaseWorld
           + LevelData.TEACHER[0] + ", " + LevelData.TEACHER[1] + ", " + LevelData.TEACHER[2] + ", " + LevelData.TEACHER[3] + "\n\n"
           + "Credits:\n"
           + "Dibuat dengan Greenfoot\n"
-          + "Musik & efek suara: (isi sumbernya)\n"
-          + "Ilustrasi & karakter: (isi sumbernya)";
+          + "Musik & efek suara: tiktok/youtube\n"
+          + "Ilustrasi & karakter: Foto kita ber4 ";
         Gfx.drawParagraph(bg, info, 22, Gfx.TEXT_DARK, 450, 130, 560, true);
         setBackground(bg);
 

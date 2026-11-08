@@ -14,7 +14,7 @@ public class DialogBox extends Actor
     /** speaker boleh "" (tanpa nama). hint = tulisan kecil di kanan bawah (boleh ""). */
     public void show(String speaker, String text, String hint)
     {
-        GreenfootImage img = Gfx.img("dialog_box", w, h);
+        GreenfootImage img = Gfx.img(w < 800 ? "dialog_box_small" : "dialog_box", w, h);
         int top = 14;
         if (speaker.length() > 0)
         {
