@@ -29,3 +29,6 @@ https://drive.google.com/drive/folders/1L14KJBEC50wAZgsah6YNxP6uhVQiuOfo?usp=sha
 
 Story :
 https://docs.google.com/document/d/1mCUt6hbIaY4LPlGcHQtKYxlnTpbu51TCQUXpszd_2Js/edit?tab=t.un929ngfiva5
+
+Draf Penulisan Laporan:
+https://docs.google.com/document/d/1HHwhcn2Id9OG1-zA0DLKkB5bUzMZ9LFNSHDGmlTZslM/edit?usp=sharing
