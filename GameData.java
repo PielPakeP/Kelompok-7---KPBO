@@ -6,11 +6,7 @@ public class GameData
 {
     // ===== Pengaturan (Settings) =====
     public static boolean musicOn = true;
-    public static boolean sfxOn = true;
-    public static boolean fullscreen = false; // hanya disimpan (Greenfoot tidak punya API fullscreen)
     public static int volume = 70;       // volume utama 0-100
-    public static int musicVolume = 60;  // 0-100
-    public static int sfxVolume = 70;    // 0-100
 
     // ===== Progres permainan =====
     public static int currentLevel = 1;

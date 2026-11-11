@@ -1,28 +1,38 @@
 import greenfoot.*;
 
 /**
- * Percakapan SETELAH level selesai: guru memberi material dan menunjukkan ruangan berikutnya.
- * Setelah itu kembali ke peta (MapWorld) dengan tujuan baru.
+ * Percakapan di dalam ruangan (guru + POPI).
+ *   new TalkWorld(level, true)  = SEBELUM level : Dialogs.BEFORE -> lalu masuk GameWorld
+ *   new TalkWorld(level)        = SESUDAH level : Dialogs.AFTER  -> lalu kembali ke peta (MapWorld) menuju ruangan berikutnya
  */
 public class TalkWorld extends BaseWorld
 {
     private final int level;
-    private final String[] pages;
+    private final boolean before;
+    private final String[][] pages;
     private int page = 0;
     private DialogBox box;
+    private DialogPortraits portraits;
     private Button skipBtn;
 
+    /** Percakapan SESUDAH level selesai (dipanggil dari GameWorld). */
     public TalkWorld(int level)
+    {
+        this(level, false);
+    }
+
+    public TalkWorld(int level, boolean before)
     {
         super();
         this.level = level;
-        this.pages = Dialogs.AFTER[level - 1];
+        this.before = before;
+        this.pages = before ? Dialogs.BEFORE[level - 1] : Dialogs.AFTER[level - 1];
         setBackground(Backgrounds.classroom(level));
-        addObject(new Teacher(level, 320), 450, 285);
         addObject(new Label("Kelas " + LevelData.SUBJECT[level - 1], 22, Gfx.TEXT_LIGHT, true), 140, 40);
         addObject(new MaterialBar(), 790, 40);
         box = new DialogBox(840, 150);
         addObject(box, 450, 505);
+        portraits = new DialogPortraits(this, 300, 140, 760, 430);   // POPI di kiri, guru di kanan
         skipBtn = new Button("btn_skip", 130, 44);
         addObject(skipBtn, 825, 100);
         showPage();
@@ -31,8 +41,8 @@ public class TalkWorld extends BaseWorld
 
     private void showPage()
     {
-        String speaker = LevelData.TEACHER[level - 1] + " (Guru " + LevelData.SUBJECT[level - 1] + ")";
-        box.show(speaker, pages[page], "klik / SPASI untuk lanjut");
+        box.show(pages[page][0], pages[page][1], "klik / SPASI untuk lanjut");
+        portraits.show(pages[page][0], Dialogs.exprOf(pages[page]));
     }
 
     public void act()
@@ -50,7 +60,6 @@ public class TalkWorld extends BaseWorld
             if (page >= pages.length) finish();
             else
             {
-                SoundManager.sfx("click.wav");
                 showPage();
             }
         }
@@ -58,7 +67,15 @@ public class TalkWorld extends BaseWorld
 
     private void finish()
     {
-        // level n selesai -> tujuan berikutnya = tahap n+1 (tahap 5 = jembatan)
-        Greenfoot.setWorld(new MapWorld(level + 1, false));
+        if (before)
+        {
+            // sebelum level -> main game
+            Greenfoot.setWorld(new GameWorld(level));
+        }
+        else
+        {
+            // level n selesai -> tujuan berikutnya = tahap n+1 (tahap 5 = jembatan)
+            Greenfoot.setWorld(new MapWorld(level + 1, false));
+        }
     }
 }

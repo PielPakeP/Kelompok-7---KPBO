@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Characters
+comment0.text=\r\n\ Daftar\ karakter\ +\ ekspresi,\ dan\ pencari\ gambar\ potret.\r\n\r\n\ Nama\ file\ gambar\:\ \ <karakter>_<ekspresi>.png\ \ \ (atau\ .jpg)\r\n\ \ \ karakter\ \:\ popi,\ bu_rita,\ teacher_1\ (Pak\ Piel),\ teacher_2\ (Pak\ Aaron),\ teacher_3\ (Pak\ Raffael),\ teacher_4\ (Pak\ Steven)\r\n\ \ \ ekspresi\ \:\ netral,\ senang,\ tertawa,\ marah,\ sedih,\ kaget\r\n\ Contoh\:\ teacher_1_marah.png,\ popi_tertawa.png\r\n\r\n\ Kalau\ gambar\ ekspresi\ tertentu\ belum\ ada,\ dipakai\ \ <karakter>_netral,\ \ lalu\ \ <karakter>\ \ (mis.\ teacher_1.png).\r\n
+comment1.params=expr
+comment1.target=java.lang.String\ phrase(java.lang.String)
+comment1.text=Kata\ acak\ yang\ cocok\ dengan\ ekspresi\ tersebut.
+comment2.params=expr
+comment2.target=int\ indexOf(java.lang.String)
+comment3.params=speaker
+comment3.target=java.lang.String\ baseOf(java.lang.String)
+comment3.text=Nama\ dasar\ file\ gambar\ untuk\ pembicara.\ null\ \=\ tidak\ punya\ gambar\ (narator,\ Pesan\ Moral,\ dll).
+comment4.params=speaker
+comment4.target=boolean\ isLeft(java.lang.String)
+comment4.text=POPI\ tampil\ di\ sisi\ kiri,\ karakter\ lain\ di\ sisi\ kanan.
+comment5.params=base\ expr
+comment5.target=greenfoot.GreenfootImage\ find(java.lang.String,\ java.lang.String)
+comment5.text=Cari\ gambar\:\ base_ekspresi,\ lalu\ base_netral,\ lalu\ base.\ Return\ null\ kalau\ tidak\ ada\ satu\ pun.
+comment6.params=speaker\ expr\ heightPx
+comment6.target=greenfoot.GreenfootImage\ portrait(java.lang.String,\ java.lang.String,\ int)
+comment6.text=Potret\ pembicara\ dengan\ tinggi\ heightPx,\ atau\ null\ kalau\ pembicara\ tidak\ punya\ gambar.
+numComments=7

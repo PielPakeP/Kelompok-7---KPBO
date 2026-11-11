@@ -23,7 +23,6 @@ public class Toggle extends Actor
         if (Greenfoot.mouseClicked(this))
         {
             on = !on;
-            SoundManager.sfx("click.wav");
             setImage(on ? onImg : offImg);
         }
     }

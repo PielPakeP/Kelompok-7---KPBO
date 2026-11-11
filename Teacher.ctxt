@@ -1,13 +1,19 @@
 #BlueJ class context
 comment0.target=Teacher
-comment0.text=\r\n\ Guru\ /\ NPC.\ Gambar\:\ teacher_1\ ...\ teacher_4\ (guru\ tiap\ level)\ dan\ teacher_principal\ (Kepala\ Sekolah).\r\n\ Disarankan\ .png\ transparan,\ tinggi\ sekitar\ 230\ px.\r\n
+comment0.text=\r\n\ Guru\ /\ NPC\ dengan\ ekspresi\ yang\ bisa\ berganti\ (setExpression).\r\n\ Gambar\:\ lihat\ Characters\ (mis.\ teacher_1_senang,\ teacher_1_marah,\ ...\ atau\ cukup\ teacher_1).\r\n
 comment1.params=level
 comment1.target=Teacher(int)
 comment2.params=level\ heightPx
 comment2.target=Teacher(int,\ int)
 comment2.text=heightPx\ >\ 0\ ->\ gambar\ diubah\ ukurannya\ ke\ tinggi\ tersebut\ (proporsi\ tetap).
-comment3.params=imageName\ heightPx
+comment3.params=baseName\ heightPx
 comment3.target=Teacher(java.lang.String,\ int)
-comment4.params=
-comment4.target=void\ act()
-numComments=5
+comment3.text=baseName\ \=\ nama\ dasar\ gambar,\ mis.\ "teacher_1"\ atau\ "bu_rita".
+comment4.params=expr
+comment4.target=void\ setExpression(java.lang.String)
+comment4.text=Ganti\ ekspresi\:\ netral,\ senang,\ tertawa,\ marah,\ sedih,\ kaget.
+comment5.params=expr
+comment5.target=void\ applyExpression(java.lang.String)
+comment6.params=
+comment6.target=void\ act()
+numComments=7

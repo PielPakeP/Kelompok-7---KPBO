@@ -13,7 +13,7 @@ public class MaterialBar extends Actor
 
     public void refresh()
     {
-        int slot = 48, gap = 8;
+        int slot = 32, gap = 8;
         int w = 4 * slot + 3 * gap + 8, h = slot + 8;
         GreenfootImage img = new GreenfootImage(w, h);
         for (int i = 0; i < 4; i++)

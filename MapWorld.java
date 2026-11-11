@@ -48,15 +48,34 @@ public class MapWorld extends BaseWorld
         { 1270, 650, 1380, 700 },
         { 690, 845, 840, 900 }
     };
+    // Zona "mendekati jembatan" untuk intro: begitu player masuk sini, percakapan bagian 2 mulai otomatis
+    private static final int[] APPROACH = { 690, 790, 840, 845 };
+
     private static final String[] ZONE_NAME = { "Ruang IPA", "Lapangan Olahraga", "Ruang Musik", "Ruang Matematika", "Jembatan" };
 
     // Posisi muncul player, index = stage - 1 (stage 1 = dekat gedung utama, lainnya = di luar ruangan sebelumnya)
     private static final int[][] SPAWN = { { 745, 330 }, { 222, 300 }, { 335, 548 }, { 1320, 300 }, { 1325, 715 } };
 
     private final int stage;
-    private final int target;           // index zona tujuan = stage - 1
+    private int target;
+    
+    private Marker marker;
+    
+    private boolean openingSequence = false;
+    private boolean openingDialog = false;
+    
+    private int openingState = 0;
+    private int afterDialogState = 0;
+    
+    private int walkTargetX;
+    private int walkTargetY;           // index zona tujuan = stage - 1
     private final int[][] wallsWorld;   // BLOCK yang sudah diskalakan ke layar
     private final int[][] zonesWorld;
+    private final int[] approachWorld;   // APPROACH yang sudah diskalakan
+
+    // alur intro: 0 = tidak/ sudah selesai, 1 = dialog bagian 1, 2 = player jalan ke jembatan, 3 = dialog bagian 2
+    private int introStep = 0;
+    private Label introGoal;
     private Player player;
     private Label prompt;
     private boolean promptShown = false;
@@ -65,6 +84,7 @@ public class MapWorld extends BaseWorld
     private String[][] pages = null;
     private int page = 0;
     private DialogBox box;
+    private DialogPortraits portraits;
 
     public MapWorld(int stage, boolean intro)
     {
@@ -73,6 +93,7 @@ public class MapWorld extends BaseWorld
         this.target = stage - 1;
         wallsWorld = scale(BLOCK);
         zonesWorld = scale(ZONE);
+        approachWorld = scale(new int[][] { APPROACH })[0];
 
         GreenfootImage bg = Backgrounds.map();
         if (DEBUG) drawDebug(bg);
@@ -83,18 +104,28 @@ public class MapWorld extends BaseWorld
         addObject(player, (int) (SPAWN[target][0] * S), (int) (SPAWN[target][1] * S));
 
         // penanda tujuan
-        int[] z = zonesWorld[target];
-        addObject(new Marker(), (z[0] + z[2]) / 2, z[1] - 14);
+        // saat intro, penanda ada di dekat jembatan (bukan di ruang IPA)
+        int[] z = intro ? approachWorld : zonesWorld[target];
+        
+        marker = new Marker();
+        addObject(marker, (z[0] + z[2]) / 2, z[1] - 14);
 
         // HUD
-        addObject(new Label("                                     ", 14, Gfx.TEXT_LIGHT, true), 700, 90);
-        addObject(new MaterialBar(), 770, 34);
+        addObject(new DialogBox(180, 35), 760, 55);
+        addObject(new MaterialBar(), 760, 55);
         addObject(new Label("Panah / WASD: jalan     SPASI: masuk / lanjut", 14, Gfx.TEXT_LIGHT, true), 450, 580);
 
         prompt = new Label("", 16, Gfx.TEXT_LIGHT, true);
 
         box = new DialogBox(840, 150);
-        if (intro) startDialog(Dialogs.MAP_INTRO);
+        portraits = new DialogPortraits(this, 250, 110, 790, 410);   // POPI di kiri, lawan bicara di kanan
+        if (intro)
+        {
+            introStep = 1;
+            introGoal = new Label("Tujuan: dekati jembatan yang rusak", 20, Gfx.TEXT_LIGHT, true);
+            addObject(introGoal, 230, 30);
+            startDialog(Dialogs.MAP_INTRO_1);
+        }
 
         SoundManager.playMusic("bgm_menu.mp3");
     }
@@ -119,16 +150,58 @@ public class MapWorld extends BaseWorld
     public void act()
     {
         String k = Greenfoot.getKey();
-        boolean confirm = (k != null && (k.equals("space") || k.equals("enter")));
+    
+        boolean confirm = (k != null &&
+            (k.equals("space") || k.equals("enter")));
+    
         boolean click = Greenfoot.mouseClicked(null);
-
+    
         if (pages != null)
         {
-            if (confirm || click) nextPage();
+            if (confirm || click)
+                nextPage();
+    
             return;
         }
-        updatePrompt();
-        if (confirm) interact();
+    
+        // intro: player sudah dekat jembatan -> lanjut percakapan bagian 2
+        if (introStep == 2 && playerInApproach())
+        {
+            introStep = 3;
+            startDialog(Dialogs.MAP_INTRO_2);
+            return;
+        }
+
+        updatePrompt();    
+        if (confirm)
+            interact();
+    }
+    
+
+    private boolean playerInApproach()
+    {
+        int fx = player.getX();
+        int fy = player.getY() + 20;
+        int[] z = approachWorld;
+        return fx >= z[0] && fx <= z[2] && fy >= z[1] && fy <= z[3];
+    }
+
+    /** Dipanggil saat satu rangkaian dialog selesai (untuk mengatur alur intro). */
+    private void onDialogEnd()
+    {
+        if (introStep == 1)
+        {
+            introStep = 2;          // jeda: player harus berjalan mendekati jembatan
+        }
+        else if (introStep == 3)
+        {
+            introStep = 0;          // intro selesai -> tujuan berikutnya: Ruang IPA
+            if (introGoal != null) { removeObject(introGoal); introGoal = null; }
+            removeObject(marker);
+            int[] z = zonesWorld[target];
+            marker = new Marker();
+            addObject(marker, (z[0] + z[2]) / 2, z[1] - 14);
+        }
     }
 
     /** Index zona tempat kaki pemain berada, atau -1. */
@@ -146,6 +219,11 @@ public class MapWorld extends BaseWorld
 
     private void updatePrompt()
     {
+        if (introStep != 0)   // selama intro belum selesai, tidak ada prompt pintu
+        {
+            if (promptShown) { removeObject(prompt); promptShown = false; }
+            return;
+        }
         int z = zoneAtPlayer();
         if (z < 0)
         {
@@ -174,12 +252,13 @@ public class MapWorld extends BaseWorld
 
     private void interact()
     {
+        if (introStep != 0) return;   // selama intro belum selesai, pintu belum bisa dipakai
         int z = zoneAtPlayer();
         if (z < 0) return;
-        SoundManager.sfx("click.wav");
+        
         if (z == target)
         {
-            if (z < 4) Greenfoot.setWorld(new GameWorld(stage));      // masuk level
+            if (z < 4) Greenfoot.setWorld(new TalkWorld(stage, true)); // masuk ruangan: ngobrol dulu, lalu main level
             else Greenfoot.setWorld(new StoryWorld(true));             // jembatan -> ending
         }
         else if (z == 4)
@@ -203,13 +282,14 @@ public class MapWorld extends BaseWorld
             removeObject(prompt);
             promptShown = false;
         }
-        addObject(box, 450, 505);
+        addObject(box, 450, 485);
         showPage();
     }
 
     private void showPage()
     {
         box.show(pages[page][0], pages[page][1], "klik / SPASI untuk lanjut");
+        portraits.show(pages[page][0], Dialogs.exprOf(pages[page]));
     }
 
     private void nextPage()
@@ -218,11 +298,12 @@ public class MapWorld extends BaseWorld
         if (page >= pages.length)
         {
             removeObject(box);
+            portraits.hide();
             pages = null;
+            onDialogEnd();
         }
         else
         {
-            SoundManager.sfx("click.wav");
             showPage();
         }
     }

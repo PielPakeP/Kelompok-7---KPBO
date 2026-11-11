@@ -1,12 +1,15 @@
 #BlueJ class context
 comment0.target=TalkWorld
-comment0.text=\r\n\ Percakapan\ SETELAH\ level\ selesai\:\ guru\ memberi\ material\ dan\ menunjukkan\ ruangan\ berikutnya.\r\n\ Setelah\ itu\ kembali\ ke\ peta\ (MapWorld)\ dengan\ tujuan\ baru.\r\n
+comment0.text=\r\n\ Percakapan\ di\ dalam\ ruangan\ (guru\ +\ POPI).\r\n\ \ \ new\ TalkWorld(level,\ true)\ \ \=\ SEBELUM\ level\ \:\ Dialogs.BEFORE\ ->\ lalu\ masuk\ GameWorld\r\n\ \ \ new\ TalkWorld(level)\ \ \ \ \ \ \ \ \=\ SESUDAH\ level\ \:\ Dialogs.AFTER\ \ ->\ lalu\ kembali\ ke\ peta\ (MapWorld)\ menuju\ ruangan\ berikutnya\r\n
 comment1.params=level
 comment1.target=TalkWorld(int)
-comment2.params=
-comment2.target=void\ showPage()
+comment1.text=Percakapan\ SESUDAH\ level\ selesai\ (dipanggil\ dari\ GameWorld).
+comment2.params=level\ before
+comment2.target=TalkWorld(int,\ boolean)
 comment3.params=
-comment3.target=void\ act()
+comment3.target=void\ showPage()
 comment4.params=
-comment4.target=void\ finish()
-numComments=5
+comment4.target=void\ act()
+comment5.params=
+comment5.target=void\ finish()
+numComments=6

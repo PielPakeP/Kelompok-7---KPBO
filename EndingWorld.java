@@ -20,7 +20,6 @@ public class EndingWorld extends BaseWorld
         addObject(againBtn, 340, 360);
         addObject(menuBtn, 560, 360);
         SoundManager.playMusic("bgm_menu.mp3");
-        SoundManager.sfx("win.wav");
     }
 
     public void act()

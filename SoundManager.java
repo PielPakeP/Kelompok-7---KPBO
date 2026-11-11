@@ -49,7 +49,7 @@ public class SoundManager
         if (music == null) return;
         try
         {
-            music.setVolume(GameData.volume * GameData.musicVolume / 100);
+            music.setVolume(GameData.volume / 100);
             if (GameData.musicOn)
             {
                 if (!music.isPlaying()) music.playLoop();
@@ -70,18 +70,5 @@ public class SoundManager
     public static void resume()
     {
         applyVolume();
-    }
-
-    /** Efek suara singkat. */
-    public static void sfx(String file)
-    {
-        if (!GameData.sfxOn) return;
-        try
-        {
-            GreenfootSound s = new GreenfootSound(file);
-            s.setVolume(GameData.volume * GameData.sfxVolume / 100);
-            s.play();
-        }
-        catch (Exception e) { }
     }
 }

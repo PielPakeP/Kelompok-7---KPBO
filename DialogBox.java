@@ -9,6 +9,8 @@ public class DialogBox extends Actor
     {
         this.w = w;
         this.h = h;
+    
+        setImage(Gfx.img("dialog_box", w, h));
     }
 
     /** speaker boleh "" (tanpa nama). hint = tulisan kecil di kanan bawah (boleh ""). */

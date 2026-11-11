@@ -242,7 +242,6 @@ public class HowToPlayWorld extends BaseWorld
         }
 
         c.flip(true);
-        SoundManager.sfx("flip.wav");
 
         if (firstCard == null)
         {
@@ -268,23 +267,15 @@ public class HowToPlayWorld extends BaseWorld
         if (firstCard.getPairId() == secondCard.getPairId())
         {
             // PASANGAN BENAR
-
             firstCard.markMatched();
             secondCard.markMatched();
-
             matchedPairs++;
-
-            SoundManager.sfx("correct.wav");
-
             step = 5;
             showStep();
         }
         else
         {
             // PASANGAN SALAH
-
-            SoundManager.sfx("wrong.wav");
-
             step = 4;
             showStep();
         }

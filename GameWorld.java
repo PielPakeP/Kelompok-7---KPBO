@@ -27,6 +27,9 @@ public class GameWorld extends BaseWorld
     private TimerBar timerBar;
     private MaterialBar materialBar;
     private SpeechBubble bubble;
+    private Teacher teacher;
+    private int streakOk = 0, streakBad = 0;   // beruntun benar / salah
+    private boolean lowWarned = false;        // sudah menunjukkan ekspresi sedih saat waktu hampir habis
     private Label pairLabel;
     private Button nextBtn, retryBtn, menuBtn;
 
@@ -34,7 +37,7 @@ public class GameWorld extends BaseWorld
     {
         super();
         this.level = level;
-        this.previewMs = 2000 + level * 1000;
+        this.previewMs = 5000 + level * 2000;
         GameData.currentLevel = level;
 
         setBackground(Backgrounds.classroom(level));
@@ -62,7 +65,8 @@ public class GameWorld extends BaseWorld
         materialBar = new MaterialBar();
         addObject(materialBar, 790, 40);
 
-        addObject(new Teacher(level), 815, 470);
+        teacher = new Teacher(level);
+        addObject(teacher, 815, 470);
         bubble = new SpeechBubble();
         addObject(bubble, 805, 320);
     }
@@ -151,7 +155,7 @@ public class GameWorld extends BaseWorld
             for (Card c : cards) c.flip(false);
             state = PLAYING;
             startTime = now;
-            bubble.setText("Mulai!");
+            react("netral", "Mulai!");
         }
     }
 
@@ -160,6 +164,13 @@ public class GameWorld extends BaseWorld
         long left = TIME_LIMIT_MS - (now - startTime);
         if (left < 0) left = 0;
         timerBar.update(left / (double) TIME_LIMIT_MS, (int) Math.ceil(left / 1000.0));
+
+        // waktu tinggal 25% -> guru sedih
+        if (!lowWarned && left > 0 && left < TIME_LIMIT_MS / 4)
+        {
+            lowWarned = true;
+            react("sedih", Characters.phrase("sedih"));
+        }
 
         if (second != null)
         {
@@ -204,19 +215,30 @@ public class GameWorld extends BaseWorld
             first.markMatched();
             second.markMatched();
             pairsFound++;
-            SoundManager.sfx("correct.wav");
-            bubble.setText(LevelData.CORRECT[Greenfoot.getRandomNumber(LevelData.CORRECT.length)]);
+            streakOk++;
+            streakBad = 0;
+            String e = (streakOk >= 2) ? "senang" : "netral";   // 2 benar beruntun -> tertawa
+            react(e, Characters.phrase(e));
         }
         else
         {
             first.flip(false);
             second.flip(false);
-            SoundManager.sfx("wrong.wav");
-            bubble.setText(LevelData.WRONG[Greenfoot.getRandomNumber(LevelData.WRONG.length)]);
+            streakBad++;
+            streakOk = 0;
+            String e = (streakBad >= 2) ? "marah" : "kaget";     // 2 salah beruntun -> marah
+            react(e, Characters.phrase(e));
         }
         first = null;
         second = null;
         pairLabel.setText("Pasangan " + pairsFound + "/" + totalPairs);
+    }
+
+    /** Guru berekspresi + balon bicara dengan kata yang sesuai. */
+    private void react(String expression, String words)
+    {
+        teacher.setExpression(expression);
+        bubble.setText(words);
     }
 
     // ---------- menang / kalah ----------
@@ -227,7 +249,7 @@ public class GameWorld extends BaseWorld
         GameData.materials[level - 1] = true;
         GameData.totalSecondsLeft += secs;
         materialBar.refresh();
-        SoundManager.sfx("win.wav");
+        react("tertawa", "Luar biasa!");
 
         String msg = "Material didapat: " + LevelData.MATERIAL[level - 1] + "\nSisa waktu: " + secs + " detik";
         addObject(new Popup("LEVEL SELESAI!", msg), 450, 300);
@@ -240,7 +262,7 @@ public class GameWorld extends BaseWorld
     private void lose()
     {
         state = LOST;
-        SoundManager.sfx("lose.wav");
+        react("sedih", "Yah... waktunya habis.");
         addObject(new Popup("WAKTU HABIS!", "Jangan menyerah, coba lagi!"), 450, 300);
         retryBtn = new Button("btn_retry", 170, 50);
         menuBtn = new Button("btn_menu", 140, 50);

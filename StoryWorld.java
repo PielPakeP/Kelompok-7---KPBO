@@ -6,36 +6,33 @@ import greenfoot.*;
  */
 public class StoryWorld extends BaseWorld
 {
-    private static final String[][] INTRO = {
-        { "Narator", "Di sebuah desa kecil, berdiri sebuah SMP yang dikelilingi sungai yang indah." },
-        { "Narator", "Satu-satunya jembatan menuju sekolah kini rusak. Papannya lapuk dan talinya putus." },
-        { "Kamu", "Aku murid baru di sini... tapi aku tidak mau teman-temanku susah menyeberang setiap hari!" },
-        { "Narator", "Para guru menyimpan material untuk memperbaiki jembatan. Material itu hanya diberikan kepada murid yang berhasil melewati tantangan di kelas mereka." },
-        { "Papan Sekolah", "Jembatan yang rusak bukan akhir, tapi awal dari perubahan." },
-        { "Narator", "Temukan semua pasangan kartu sebelum waktu 2 menit habis. Kumpulkan 4 material: Tali, Papan, Paku, dan Palu!" }
-    };
-
-    private static final String[][] ENDING = {
-        { "Narator", "Tali, papan, paku, dan palu... semua material sudah terkumpul!" },
-        { "Narator", "Para guru dan teman-teman bergotong royong memperbaiki jembatan." },
-        { "Kamu", "Bersama, kita bisa memperbaiki jembatan ini!" },
-        { "Narator", "Kini jembatan itu berdiri kokoh. Perubahan baik selalu dimulai dari satu langkah kecil." }
-    };
-
     private final boolean ending;
     private final String[][] pages;
     private int page = 0;
+    private int repairPage = -1;
+    private int teachersPage = -1;
+    private boolean repaired = false;
+    private boolean teachersShown = false;
     private DialogBox box;
+    private DialogPortraits portraits;
     private Button skipBtn;
 
     public StoryWorld(boolean ending)
     {
         super();
         this.ending = ending;
-        pages = ending ? ENDING : INTRO;
-        setBackground(Backgrounds.bridge(ending));
+        pages = ending ? Dialogs.ENDING : Dialogs.MAP_INTRO;
+        setBackground(Backgrounds.bridge(false));   // jembatan rusak dulu; berganti utuh setelah CUE_REPAIR
+
+        // cari halaman penanda di ending (background berganti, guru muncul)
+        for (int i = 0; i < pages.length; i++)
+        {
+            if (pages[i][1].equals(Dialogs.CUE_REPAIR)) repairPage = i;
+            if (pages[i][1].equals(Dialogs.CUE_TEACHERS)) teachersPage = i;
+        }
         box = new DialogBox(840, 150);
         addObject(box, 450, 505);
+        portraits = new DialogPortraits(this, 250, 110, 790, 430);
         skipBtn = new Button("btn_skip", 130, 44);
         addObject(skipBtn, 825, 40);
         showPage();
@@ -44,7 +41,36 @@ public class StoryWorld extends BaseWorld
 
     private void showPage()
     {
-        box.show(pages[page][0], pages[page][1], "klik untuk lanjut");
+        // setelah halaman "[POPI mulai memperbaiki jembatan.]" -> jembatan tiba-tiba sudah utuh
+        if (ending && !repaired && repairPage >= 0 && page > repairPage)
+        {
+            repaired = true;
+            setBackground(Backgrounds.bridge(true));
+        }
+        // "[Semua guru datang.]" -> semua karakter muncul (POPI dan Bu Rita hanya tampil kalau gambarnya ada)
+        if (ending && !teachersShown && page == teachersPage)
+        {
+            teachersShown = true;
+            showCast();
+        }
+        box.show(pages[page][0], pages[page][1], "klik / SPASI untuk lanjut");
+        // potret pembicara; setelah semua guru muncul di layar, potret tunggal tidak dipakai lagi
+        if (teachersShown) portraits.hide();
+        else portraits.show(pages[page][0], Dialogs.exprOf(pages[page]));
+    }
+
+    private void showCast()
+    {
+        // semua karakter muncul dengan ekspresi tertawa (cocok dengan "[Semua tertawa.]")
+        String[] bases = { "popi", "teacher_1", "teacher_2", "teacher_3", "teacher_4", "bu_rita" };
+        int[] xs = { 120, 260, 400, 540, 680, 810 };
+        for (int i = 0; i < bases.length; i++)
+        {
+            if (Characters.find(bases[i], "tertawa") == null) continue;   // belum ada gambarnya -> dilewati
+            Teacher t = new Teacher(bases[i], 170);
+            t.setExpression("tertawa");
+            addObject(t, xs[i], 335);
+        }
     }
 
     public void act()
@@ -62,7 +88,6 @@ public class StoryWorld extends BaseWorld
             if (page >= pages.length) finish();
             else
             {
-                SoundManager.sfx("click.wav");
                 showPage();
             }
         }

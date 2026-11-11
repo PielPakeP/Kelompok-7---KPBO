@@ -1,4 +1,9 @@
 #BlueJ class context
 comment0.target=Dialogs
-comment0.text=\r\n\ Semua\ percakapan\ (dialog)\ di\ game.\ Format\ tiap\ baris\:\ {\ "Nama\ pembicara",\ "Teks"\ }.\r\n\ Mau\ ganti\ isi\ cerita?\ Cukup\ edit\ file\ ini.\r\n
-numComments=1
+comment0.text=\r\n\ Semua\ percakapan\ (dialog)\ di\ game.\ Format\ tiap\ baris\:\ {\ "Nama\ pembicara",\ "Teks"\ }.\r\n\ Speaker\ ""\ (kosong)\ \=\ teks\ catatan\ /\ narasi\ tanpa\ nama,\ ditulis\ dalam\ kurung\ siku.\r\n\ Mau\ ganti\ isi\ cerita?\ Cukup\ edit\ file\ ini.\r\n\r\n\ Tips\:\ satu\ halaman\ dialog\ muat\ sekitar\ 2\ baris\ teks.\ Kalau\ kalimat\ terlalu\ panjang,\ pecah\ jadi\ 2\ baris\ data.\r\n
+comment1.params=row
+comment1.target=java.lang.String\ exprOf(java.lang.String[])
+comment1.text=\r\n\ Ekspresi\ tiap\ baris\ \=\ elemen\ ke-3\:\ "netral",\ "senang",\ "tertawa",\ "marah",\ "sedih",\ atau\ "kaget".\r\n\ Kalau\ elemen\ ke-3\ tidak\ ada,\ dianggap\ "netral".\ Gambarnya\:\ lihat\ Characters.java.\r\n
+comment2.params=x\ y
+comment2.target=java.lang.String[][]\ join(java.lang.String[][],\ java.lang.String[][])
+numComments=3

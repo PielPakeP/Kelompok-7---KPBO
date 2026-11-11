@@ -35,7 +35,6 @@ public class Button extends Actor
     {
         if (Greenfoot.mouseClicked(this))
         {
-            SoundManager.sfx("click.wav");
             return true;
         }
         return false;

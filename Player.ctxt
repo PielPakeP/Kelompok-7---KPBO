@@ -1,6 +1,5 @@
 #BlueJ class context
 comment0.target=Player
-comment0.text=\r\n\ Pemain\ di\ peta.\ Jalan\ dengan\ panah\ /\ WASD.\ Tabrakan\ dicek\ lewat\ MapWorld.isBlocked().\r\n\r\n\ Gambar\ (30\ x\ 46\ px,\ kaki\ di\ bagian\ bawah\ gambar,\ .png\ transparan\ disarankan)\:\r\n\ \ \ player_down_1,\ player_down_2,\ player_up_1,\ player_up_2,\r\n\ \ \ player_left_1,\ player_left_2,\ player_right_1,\ player_right_2\r\n\ (_1\ \=\ berdiri\ /\ langkah\ 1,\ _2\ \=\ langkah\ 2)\r\n
 comment1.params=
 comment1.target=Player()
 comment2.params=
