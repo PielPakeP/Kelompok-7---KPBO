@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=StoryWorld
+comment0.text=\r\n\ STORY\:\ cerita\ pembuka\ (ending\=false)\ atau\ penutup\ (ending\=true).\r\n\ Klik\ /\ Spasi\ /\ Enter\ untuk\ lanjut.\ Tombol\ "Lewati"\ untuk\ melompat.\r\n
+comment1.params=ending
+comment1.target=StoryWorld(boolean)
+comment2.params=
+comment2.target=void\ showPage()
+comment3.params=
+comment3.target=void\ showCast()
+comment4.params=
+comment4.target=void\ act()
+comment5.params=
+comment5.target=void\ finish()
+numComments=6

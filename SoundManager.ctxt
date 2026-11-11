@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=SoundManager
+comment0.text=\r\n\ Pengatur\ musik\ &\ efek\ suara.\r\n\ Aman\ dipakai\ walau\ file\ suara\ belum\ ada\:\ kalau\ file\ tidak\ ketemu,\ game\ tetap\ jalan\ (tanpa\ bunyi).\r\n\ Taruh\ file\ suara\ di\ folder\ \ sounds/\ \ \:\r\n\ \ \ bgm_menu.mp3,\ bgm_game.mp3,\ click.wav,\ flip.wav,\ correct.wav,\ wrong.wav,\ win.wav,\ lose.wav\r\n
+comment1.params=file
+comment1.target=void\ playMusic(java.lang.String)
+comment1.text=Mainkan\ musik\ latar\ (loop).\ Kalau\ sudah\ memainkan\ file\ yang\ sama,\ tidak\ diulang\ dari\ awal.
+comment2.params=
+comment2.target=void\ stopMusic()
+comment3.params=
+comment3.target=void\ applyVolume()
+comment3.text=Terapkan\ volume\ &\ status\ ON/OFF\ musik\ dari\ GameData.
+comment4.params=
+comment4.target=void\ pause()
+comment5.params=
+comment5.target=void\ resume()
+numComments=6

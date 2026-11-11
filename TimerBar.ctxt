@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=TimerBar
+comment0.text=\r\n\ Bar\ timer.\ Gambar\:\ timer_frame\ (340x50,\ sudah\ ada\ ikon\ jam),\r\n\ timer_fill\ (isi\ bar)\ dan\ timer_fill_low\ (isi\ bar\ saat\ waktu\ hampir\ habis).\r\n
+comment1.params=
+comment1.target=TimerBar()
+comment2.params=frac\ secs
+comment2.target=void\ update(double,\ int)
+comment2.text=frac\ \=\ sisa\ waktu\ 0.0\ -\ 1.0,\ secs\ \=\ sisa\ detik.
+numComments=3

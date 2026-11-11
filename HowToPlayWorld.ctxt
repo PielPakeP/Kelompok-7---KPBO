@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=HowToPlayWorld
+comment1.params=
+comment1.target=HowToPlayWorld()
+comment2.params=
+comment2.target=void\ createCards()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ showStep()
+comment5.params=c
+comment5.target=void\ selectCard(Card)
+comment6.params=
+comment6.target=void\ checkPair()
+comment7.params=
+comment7.target=void\ nextStep()
+numComments=8

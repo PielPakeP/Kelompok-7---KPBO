@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Button
+comment0.text=\r\n\ Tombol\ bergambar.\ Contoh\:\ new\ Button("btn_start",\ 260,\ 58)\r\n\ memakai\ images/btn_start.jpg.\ Kalau\ ada\ btn_start_hover.jpg\ dipakai\ saat\ mouse\ di\ atas\ tombol;\r\n\ kalau\ tidak\ ada,\ tombol\ sedikit\ membesar.\r\n
+comment1.params=imageName\ w\ h
+comment1.target=Button(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=boolean\ clicked()
+comment3.text=true\ jika\ tombol\ ini\ diklik\ (sekaligus\ memainkan\ suara\ klik).
+numComments=4

@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=ImageActor
+comment0.text=Aktor\ gambar\ statis\ (dipakai\ untuk\ judul\ /\ banner).
+comment1.params=img
+comment1.target=ImageActor(greenfoot.GreenfootImage)
+numComments=2

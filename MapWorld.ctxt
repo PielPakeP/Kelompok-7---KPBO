@@ -1,0 +1,36 @@
+#BlueJ class context
+comment0.target=MapWorld
+comment0.text=\r\n\ PETA\ SEKOLAH.\ Player\ berjalan\ (panah\ /\ WASD)\ ke\ ruangan\ tujuan,\ tekan\ SPASI\ di\ depan\ pintu\ untuk\ masuk.\r\n\r\n\ stage\ \=\ tujuan\ saat\ ini\:\ \ 1\ \=\ Ruang\ IPA,\ 2\ \=\ Lapangan\ Olahraga,\ 3\ \=\ Ruang\ Musik,\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4\ \=\ Ruang\ Matematika,\ 5\ \=\ Jembatan\ (ending).\r\n\ intro\ \=\ true\ ->\ percakapan\ pembuka\ tampil\ di\ awal\ (hanya\ untuk\ stage\ 1).\r\n\r\n\ Semua\ koordinat\ di\ bawah\ memakai\ ukuran\ gambar\ ASLI\ peta\ (1536\ x\ 1024),\r\n\ lalu\ otomatis\ diperkecil\ ke\ layar\ 900\ x\ 600.\ Mau\ menyesuaikan\ tabrakan?\ Ubah\ angka\ di\ BLOCK\ /\ ZONE,\r\n\ dan\ set\ DEBUG\ \=\ true\ untuk\ melihat\ kotaknya.\r\n
+comment1.params=stage\ intro
+comment1.target=MapWorld(int,\ boolean)
+comment10.params=p
+comment10.target=void\ startDialog(java.lang.String[][])
+comment11.params=
+comment11.target=void\ showPage()
+comment12.params=
+comment12.target=void\ nextPage()
+comment13.params=src
+comment13.target=int[][]\ scale(int[][])
+comment14.params=bg
+comment14.target=void\ drawDebug(greenfoot.GreenfootImage)
+comment14.text=ALAT\ BANTU\ DEVELOPER\ (hanya\ jalan\ kalau\ DEBUG\ \=\ true).\ Satu-satunya\ tempat\ di\ game\ yang\ menggambar\ dengan\ kode.
+comment2.params=
+comment2.target=boolean\ isLocked()
+comment3.params=px\ py
+comment3.target=boolean\ isBlocked(int,\ int)
+comment3.text=true\ jika\ kotak\ kaki\ pemain\ di\ titik\ (px,\ py)\ menabrak\ sesuatu.
+comment4.params=
+comment4.target=void\ act()
+comment5.params=
+comment5.target=boolean\ playerInApproach()
+comment6.params=
+comment6.target=void\ onDialogEnd()
+comment6.text=Dipanggil\ saat\ satu\ rangkaian\ dialog\ selesai\ (untuk\ mengatur\ alur\ intro).
+comment7.params=
+comment7.target=int\ zoneAtPlayer()
+comment7.text=Index\ zona\ tempat\ kaki\ pemain\ berada,\ atau\ -1.
+comment8.params=
+comment8.target=void\ updatePrompt()
+comment9.params=
+comment9.target=void\ interact()
+numComments=15

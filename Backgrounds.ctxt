@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Backgrounds
+comment0.text=\r\n\ Semua\ background\ diambil\ dari\ gambar\ (ukuran\ 900\ x\ 600)\:\r\n\ \ \ bg_menu,\ bg_settings,\ bg_info,\ bg_ending,\ bg_level1\ ...\ bg_level4,\ map\r\n
+comment1.params=repaired
+comment1.target=greenfoot.GreenfootImage\ bridge(boolean)
+comment1.text=Pemandangan\ sekolah\ +\ jembatan\:\ rusak\ (menu\ /\ cerita)\ atau\ sudah\ diperbaiki\ (ending).
+comment2.params=
+comment2.target=greenfoot.GreenfootImage\ settings()
+comment3.params=
+comment3.target=greenfoot.GreenfootImage\ info()
+comment4.params=
+comment4.target=greenfoot.GreenfootImage\ map()
+comment5.params=level
+comment5.target=greenfoot.GreenfootImage\ classroom(int)
+comment5.text=Kelas\ tiap\ level\ (1-4).
+numComments=6

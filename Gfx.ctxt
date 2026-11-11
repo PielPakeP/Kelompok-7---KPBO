@@ -1,0 +1,35 @@
+#BlueJ class context
+comment0.target=Gfx
+comment0.text=\r\n\ Pemuat\ gambar\ +\ fungsi\ bantu\ teks.\r\n\r\n\ SEMUA\ tampilan\ game\ (background,\ tombol,\ kartu,\ karakter,\ bar,\ popup)\ diambil\ dari\ file\ gambar\r\n\ di\ folder\ \ images/\ \ .\ Cukup\ tulis\ nama\ file\ TANPA\ ekstensi;\ game\ mencari\ \ .jpg\ \ lalu\ \ .png\r\n\ (pakai\ .png\ untuk\ gambar\ yang\ butuh\ bagian\ transparan,\ misalnya\ karakter).\r\n\ Kalau\ file\ tidak\ ditemukan,\ muncul\ gambar\ kosong\ dan\ pesan\ [ASET\ HILANG]\ di\ jendela\ Greenfoot.\r\n\r\n\ Teks\ (dialog,\ angka\ timer,\ isi\ kartu)\ tetap\ ditulis\ lewat\ kode\ karena\ isinya\ berubah-ubah.\r\n\ Warna\ teks\ hanya\ diatur\ di\ 3\ konstanta\ di\ bawah\ ini.\r\n
+comment1.params=c
+comment1.target=greenfoot.Color\ toGreenfootColor(java.awt.Color)
+comment10.params=s\ size\ maxW
+comment10.target=java.util.List\ wrap(java.lang.String,\ int,\ int)
+comment10.text=Pecah\ teks\ menjadi\ baris-baris\ agar\ muat\ dalam\ lebar\ maxW.\ Mendukung\ "\\n".
+comment11.params=g\ s\ size\ c\ x\ y\ maxW\ center
+comment11.target=int\ drawParagraph(greenfoot.GreenfootImage,\ java.lang.String,\ int,\ java.awt.Color,\ int,\ int,\ int,\ boolean)
+comment11.text=Gambar\ paragraf.\ y\ \=\ sisi\ atas.\ Kalau\ center\=true,\ x\ \=\ titik\ tengah;\ kalau\ tidak,\ x\ \=\ sisi\ kiri.\ Return\ tinggi\ total.
+comment12.params=g\ s\ bx\ by\ bw\ bh\ c\ maxSize\ minSize
+comment12.target=void\ drawFitted(greenfoot.GreenfootImage,\ java.lang.String,\ int,\ int,\ int,\ int,\ java.awt.Color,\ int,\ int)
+comment12.text=Teks\ otomatis\ mengecil\ sampai\ muat\ di\ kotak\ (dipakai\ untuk\ isi\ kartu\ &\ balon\ bicara).
+comment2.params=name
+comment2.target=greenfoot.GreenfootImage\ load(java.lang.String)
+comment3.params=name
+comment3.target=boolean\ exists(java.lang.String)
+comment3.text=true\ jika\ file\ images/<name>.jpg\ (atau\ .png)\ ada.
+comment4.params=name
+comment4.target=greenfoot.GreenfootImage\ img(java.lang.String)
+comment4.text=Gambar\ dengan\ ukuran\ aslinya\ (salinan\ baru,\ aman\ untuk\ dicoret-coret).
+comment5.params=name\ w\ h
+comment5.target=greenfoot.GreenfootImage\ img(java.lang.String,\ int,\ int)
+comment5.text=Gambar\ yang\ sudah\ diubah\ ke\ ukuran\ w\ x\ h.
+comment6.params=
+comment6.target=java.awt.Font\ loadPixelFont()
+comment7.params=size
+comment7.target=int\ pixelSize(int)
+comment7.text=Ukuran\ lama\ di\ kode\ ->\ ukuran\ font\ pixel.\ Dibulatkan\ ke\ kelipatan\ 15\ supaya\ tepinya\ tajam.
+comment8.params=s\ size\ c
+comment8.target=greenfoot.GreenfootImage\ text(java.lang.String,\ int,\ java.awt.Color)
+comment9.params=g\ s\ size\ c\ cx\ cy
+comment9.target=void\ drawCentered(greenfoot.GreenfootImage,\ java.lang.String,\ int,\ java.awt.Color,\ int,\ int)
+numComments=13

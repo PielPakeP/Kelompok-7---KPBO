@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=SpeechBubble
+comment0.text=Balon\ bicara\ guru.\ Gambar\:\ bubble\ (170\ x\ 100,\ ekor\ di\ bawah;\ badan\ balon\ di\ bagian\ atas\ ~82\ px).
+comment1.params=
+comment1.target=SpeechBubble()
+comment2.params=t
+comment2.target=void\ setText(java.lang.String)
+numComments=3

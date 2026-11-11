@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=DialogPortraits
+comment0.text=\r\n\ Menampilkan\ potret\ pembicara\ di\ samping\ kotak\ dialog\:\r\n\ POPI\ di\ sisi\ kiri,\ karakter\ lain\ (Bu\ Rita,\ para\ guru)\ di\ sisi\ kanan.\r\n\ Hanya\ pembicara\ yang\ sedang\ bicara\ yang\ tampil.\ Narator\ /\ catatan\ [..]\ \=\ tidak\ ada\ potret.\r\n\ Posisi\:\ bagian\ bawah\ potret\ berhenti\ tepat\ di\ atas\ kotak\ dialog\ (bottomY).\r\n
+comment1.params=world\ heightPx\ leftX\ rightX\ bottomY
+comment1.target=DialogPortraits(greenfoot.World,\ int,\ int,\ int,\ int)
+comment2.params=speaker\ expression
+comment2.target=void\ show(java.lang.String,\ java.lang.String)
+comment3.params=
+comment3.target=void\ hide()
+numComments=4

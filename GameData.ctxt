@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=GameData
+comment0.text=\r\n\ Data\ global\ game\ (static)\ -\ dipakai\ oleh\ semua\ World.\r\n\ Menyimpan\ pengaturan\ (Settings)\ dan\ progres\ pemain.\r\n
+comment1.params=
+comment1.target=void\ newGame()
+comment1.text=Reset\ progres\ untuk\ memulai\ permainan\ baru\ (pengaturan\ tidak\ direset).
+numComments=2

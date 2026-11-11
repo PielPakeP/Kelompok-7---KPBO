@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=BaseWorld
+comment0.text=\r\n\ Induk\ semua\ World\ di\ game\ ini\ (pewarisan\ /\ inheritance).\r\n\ Semua\ layar\ berukuran\ 900x600\ dan\ otomatis\ mem-pause\ /\ melanjutkan\ musik\r\n\ saat\ tombol\ Pause\ /\ Run\ ditekan.\r\n
+comment1.params=
+comment1.target=BaseWorld()
+comment2.params=
+comment2.target=void\ stopped()
+comment3.params=
+comment3.target=void\ started()
+numComments=4
