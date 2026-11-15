@@ -53,26 +53,22 @@ public class HowToPlayWorld extends BaseWorld
 
     private void createCards()
     {
-        String[][] pairs = LevelData.PAIRS[tutorialLevel - 1];
-
-        // Dua pasangan kartu
+        // Dua pasangan kartu dari gambar
         for (int i = 0; i < 2; i++)
         {
-            String[] p = pairs[i];
-
             cards.add(new Card(
-                i, p[0], cw, ch, tutorialLevel, 'a'
+                i, "", cw, ch, tutorialLevel, 'a'
             ));
-
+    
             cards.add(new Card(
-                i, p[1], cw, ch, tutorialLevel, 'b'
+                i, "", cw, ch, tutorialLevel, 'b'
             ));
         }
-
+    
         // Posisi papan 2x2
         int[] xs = {370, 530, 370, 530};
         int[] ys = {190, 190, 360, 360};
-
+    
         for (int i = 0; i < cards.size(); i++)
         {
             addObject(cards.get(i), xs[i], ys[i]);
@@ -87,9 +83,10 @@ public class HowToPlayWorld extends BaseWorld
     {
         String key = Greenfoot.getKey();
 
-        if (backBtn.clicked() || "escape".equals(key))
+        if (backBtn.clicked())
         {
             Greenfoot.setWorld(new MenuWorld());
+            SoundManager.sfx("click.mp3");
             return;
         }
 

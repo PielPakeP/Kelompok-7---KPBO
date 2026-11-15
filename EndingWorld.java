@@ -28,10 +28,12 @@ public class EndingWorld extends BaseWorld
         {
             GameData.newGame();
             Greenfoot.setWorld(new MapWorld(1, true));
+            SoundManager.sfx("click.mp3");
         }
         else if (menuBtn.clicked())
         {
             Greenfoot.setWorld(new MenuWorld());
+            SoundManager.sfx("click.mp3");
         }
     }
 

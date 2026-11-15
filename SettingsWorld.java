@@ -8,7 +8,7 @@ import java.awt.Color;
 public class SettingsWorld extends BaseWorld
 {
     private Slider volSlider;
-    private Toggle musicToggle;
+    private Toggle musicToggle, sfxToggle;
     private Label volLbl;
     private Button backBtn;
     private int lastSig = -1;
@@ -19,7 +19,7 @@ public class SettingsWorld extends BaseWorld
         setBackground(Backgrounds.settings());   // panel + judul "Settings" sudah ada di gambar bg_settings
 
         int[] rowY = { 160, 225, 290, 355, 420, 485 };
-        String[] names = { "Volume", "Music"};
+        String[] names = { "Volume", "Music", "Sound Effect"};
         for (int i = 0; i < names.length; i++)
         {
             Label l = new Label(names[i], 24, Gfx.TEXT_DARK);
@@ -28,15 +28,13 @@ public class SettingsWorld extends BaseWorld
 
         volSlider = new Slider(230, GameData.volume);
         musicToggle = new Toggle(GameData.musicOn);
-
+        sfxToggle = new Toggle(GameData.sfxOn);
         addObject(volSlider, 560, rowY[0]);
         addObject(musicToggle, 640, rowY[1]);
+        addObject(sfxToggle, 640, rowY[2]);
 
         volLbl = new Label(GameData.volume + "%", 20, Gfx.TEXT_DARK);
-
         addObject(volLbl, 725, rowY[0]);
-
-
 
         backBtn = new Button("btn_close", 46, 46);
         addObject(backBtn, 745, 72);
@@ -59,9 +57,10 @@ public class SettingsWorld extends BaseWorld
             SoundManager.applyVolume();
         }
 
-        if (backBtn.clicked() || "escape".equals(Greenfoot.getKey()))
+        if (backBtn.clicked())
         {
             Greenfoot.setWorld(new MenuWorld());
+            SoundManager.sfx("click.mp3");
         }
     }
 }

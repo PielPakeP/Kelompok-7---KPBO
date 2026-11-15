@@ -102,7 +102,7 @@ public class Gfx
     /** Ukuran lama di kode -> ukuran font pixel. Dibulatkan ke kelipatan 15 supaya tepinya tajam. */
     private static int pixelSize(int size)
     {
-        return Math.max(15, (int) Math.round(size * 1.35 / 15.0) * 15);
+        return Math.max(15, (int) Math.round(size * 1.35));
     }
 
     public static GreenfootImage text(String s, int size, Color c)

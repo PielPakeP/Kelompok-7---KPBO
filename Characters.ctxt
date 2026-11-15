@@ -8,7 +8,6 @@ comment2.params=expr
 comment2.target=int\ indexOf(java.lang.String)
 comment3.params=speaker
 comment3.target=java.lang.String\ baseOf(java.lang.String)
-comment3.text=Nama\ dasar\ file\ gambar\ untuk\ pembicara.\ null\ \=\ tidak\ punya\ gambar\ (narator,\ Pesan\ Moral,\ dll).
 comment4.params=speaker
 comment4.target=boolean\ isLeft(java.lang.String)
 comment4.text=POPI\ tampil\ di\ sisi\ kiri,\ karakter\ lain\ di\ sisi\ kanan.

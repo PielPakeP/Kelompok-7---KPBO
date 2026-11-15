@@ -29,12 +29,11 @@ public class TalkWorld extends BaseWorld
         this.pages = before ? Dialogs.BEFORE[level - 1] : Dialogs.AFTER[level - 1];
         setBackground(Backgrounds.classroom(level));
         addObject(new Label("Kelas " + LevelData.SUBJECT[level - 1], 22, Gfx.TEXT_LIGHT, true), 140, 40);
-        addObject(new MaterialBar(), 790, 40);
         box = new DialogBox(840, 150);
         addObject(box, 450, 505);
         portraits = new DialogPortraits(this, 300, 140, 760, 430);   // POPI di kiri, guru di kanan
         skipBtn = new Button("btn_skip", 130, 44);
-        addObject(skipBtn, 825, 100);
+        addObject(skipBtn, 800, 35);
         showPage();
         SoundManager.playMusic("bgm_game.mp3");
     }
@@ -50,6 +49,7 @@ public class TalkWorld extends BaseWorld
         if (skipBtn.clicked())
         {
             finish();
+            SoundManager.sfx("click.mp3");
             return;
         }
         String k = Greenfoot.getKey();

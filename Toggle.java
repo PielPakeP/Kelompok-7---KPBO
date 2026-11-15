@@ -24,6 +24,7 @@ public class Toggle extends Actor
         {
             on = !on;
             setImage(on ? onImg : offImg);
+            SoundManager.sfx("click.mp3");
         }
     }
 }

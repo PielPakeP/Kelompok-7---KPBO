@@ -10,7 +10,7 @@ import java.util.*;
 public class GameWorld extends BaseWorld
 {
     private static final int PREVIEW = 0, PLAYING = 1, WON = 2, LOST = 3;
-    private static final long TIME_LIMIT_MS = 120000;   // timer 2 menit
+    private static final long TIME_LIMIT_MS = 60000;   // timer 2 menit
     private static final int CHECK_DELAY = 30;          // jeda (frame) sebelum 2 kartu dicek
 
     private final int level;
@@ -37,7 +37,7 @@ public class GameWorld extends BaseWorld
     {
         super();
         this.level = level;
-        this.previewMs = 5000 + level * 2000;
+        this.previewMs = 2000 + level * 1000;
         GameData.currentLevel = level;
 
         setBackground(Backgrounds.classroom(level));
@@ -57,16 +57,13 @@ public class GameWorld extends BaseWorld
         addObject(timerBar, 195, 40);
 
         String banner = "Kelas " + LevelData.SUBJECT[level - 1] + " - Level " + level + "/" + LevelData.MAX_LEVEL;
-        addObject(new Label(banner, 22, Gfx.TEXT_LIGHT, true), 520, 38);
+        addObject(new Label(banner, 22, Gfx.TEXT_LIGHT, true), 720, 38);
 
-        pairLabel = new Label("Pasangan 0/0", 16, Gfx.TEXT_LIGHT, true);
-        addObject(pairLabel, 520, 72);
+        pairLabel = new Label("Pasangan 0/0", 15, Gfx.TEXT_LIGHT, true);
+        addObject(pairLabel, 450, 550);
 
-        materialBar = new MaterialBar();
-        addObject(materialBar, 790, 40);
-
-        teacher = new Teacher(level);
-        addObject(teacher, 815, 470);
+        teacher = new Teacher(level, 280);
+        addObject(teacher, 790, 480);
         bubble = new SpeechBubble();
         addObject(bubble, 805, 320);
     }
@@ -78,16 +75,44 @@ public class GameWorld extends BaseWorld
         totalPairs = cols * rows / 2;
         pairLabel.setText("Pasangan 0/" + totalPairs);
 
-        int gap = 12, areaX = 30, areaY = 95, areaW = 690, areaH = 475;
-        int cw = Math.min(125, (areaW - (cols - 1) * gap) / cols);
-        int ch = Math.min(150, (areaH - (rows - 1) * gap) / rows);
+        int gap = 12, areaX, areaY, areaW = 690, areaH = 475;
+        int cw;
+        int ch;
+        
+        if (level == 1)
+        {
+            cw = 125;
+            ch = 150;
+            areaX = 75;
+            areaY = 20;
+        }
+        else if (level == 2)
+        {
+            cw = 105;
+            ch = 100;
+            areaX = 105;
+            areaY = 80;
+        }
+        else if (level == 3)
+        {
+            cw = 105;
+            ch = 80;
+            areaX = 105;
+            areaY = 30;
+        }
+        else
+        {
+            cw = 95;
+            ch = 65;
+            areaX = 83;
+            areaY = 0;
+        }
 
         List<Card> list = new ArrayList<Card>();
-        for (int i = 0; i < totalPairs; i++)
+        for (int i = 0; i < totalPairs; i++)    
         {
-            String[] p = LevelData.PAIRS[level - 1][i];
-            list.add(new Card(i, p[0], cw, ch, level, 'a'));
-            list.add(new Card(i, p[1], cw, ch, level, 'b'));
+            list.add(new Card(i, "", cw, ch, level, 'a'));
+            list.add(new Card(i, "", cw, ch, level, 'b'));
         }
         Collections.shuffle(list);
 
@@ -165,13 +190,6 @@ public class GameWorld extends BaseWorld
         if (left < 0) left = 0;
         timerBar.update(left / (double) TIME_LIMIT_MS, (int) Math.ceil(left / 1000.0));
 
-        // waktu tinggal 25% -> guru sedih
-        if (!lowWarned && left > 0 && left < TIME_LIMIT_MS / 4)
-        {
-            lowWarned = true;
-            react("sedih", Characters.phrase("sedih"));
-        }
-
         if (second != null)
         {
             checkTimer--;
@@ -197,6 +215,7 @@ public class GameWorld extends BaseWorld
     {
         if (c.isFaceUp() || c.isMatched()) return;
         c.flip(true);
+        SoundManager.sfx("flip.mp3");
         if (first == null)
         {
             first = c;
@@ -219,6 +238,7 @@ public class GameWorld extends BaseWorld
             streakBad = 0;
             String e = (streakOk >= 2) ? "senang" : "netral";   // 2 benar beruntun -> tertawa
             react(e, Characters.phrase(e));
+            SoundManager.sfx("correct.mp3");
         }
         else
         {
@@ -228,6 +248,7 @@ public class GameWorld extends BaseWorld
             streakOk = 0;
             String e = (streakBad >= 2) ? "marah" : "kaget";     // 2 salah beruntun -> marah
             react(e, Characters.phrase(e));
+            SoundManager.sfx("wrong.mp3");
         }
         first = null;
         second = null;
@@ -248,7 +269,6 @@ public class GameWorld extends BaseWorld
         int secs = (int) (leftMs / 1000);
         GameData.materials[level - 1] = true;
         GameData.totalSecondsLeft += secs;
-        materialBar.refresh();
         react("tertawa", "Luar biasa!");
 
         String msg = "Material didapat: " + LevelData.MATERIAL[level - 1] + "\nSisa waktu: " + secs + " detik";
@@ -257,6 +277,7 @@ public class GameWorld extends BaseWorld
         menuBtn = new Button("btn_menu", 140, 50);
         addObject(nextBtn, 355, 395);
         addObject(menuBtn, 545, 395);
+        SoundManager.sfx("win.mp3");
     }
 
     private void lose()
@@ -268,6 +289,7 @@ public class GameWorld extends BaseWorld
         menuBtn = new Button("btn_menu", 140, 50);
         addObject(retryBtn, 360, 395);
         addObject(menuBtn, 545, 395);
+        SoundManager.sfx("lose.mp3");
     }
 
     private void goNext()

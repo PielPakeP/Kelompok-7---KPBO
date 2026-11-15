@@ -122,12 +122,10 @@ public class MapWorld extends BaseWorld
         if (intro)
         {
             introStep = 1;
-            introGoal = new Label("Tujuan: dekati jembatan yang rusak", 20, Gfx.TEXT_LIGHT, true);
-            addObject(introGoal, 230, 30);
             startDialog(Dialogs.MAP_INTRO_1);
         }
 
-        SoundManager.playMusic("bgm_menu.mp3");
+        SoundManager.playMusic("bgm_game.mp3");
     }
 
     // ---------- dipanggil oleh Player ----------

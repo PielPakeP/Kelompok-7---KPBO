@@ -10,9 +10,7 @@ public class StoryWorld extends BaseWorld
     private final String[][] pages;
     private int page = 0;
     private int repairPage = -1;
-    private int teachersPage = -1;
     private boolean repaired = false;
-    private boolean teachersShown = false;
     private DialogBox box;
     private DialogPortraits portraits;
     private Button skipBtn;
@@ -28,7 +26,6 @@ public class StoryWorld extends BaseWorld
         for (int i = 0; i < pages.length; i++)
         {
             if (pages[i][1].equals(Dialogs.CUE_REPAIR)) repairPage = i;
-            if (pages[i][1].equals(Dialogs.CUE_TEACHERS)) teachersPage = i;
         }
         box = new DialogBox(840, 150);
         addObject(box, 450, 505);
@@ -47,30 +44,8 @@ public class StoryWorld extends BaseWorld
             repaired = true;
             setBackground(Backgrounds.bridge(true));
         }
-        // "[Semua guru datang.]" -> semua karakter muncul (POPI dan Bu Rita hanya tampil kalau gambarnya ada)
-        if (ending && !teachersShown && page == teachersPage)
-        {
-            teachersShown = true;
-            showCast();
-        }
         box.show(pages[page][0], pages[page][1], "klik / SPASI untuk lanjut");
-        // potret pembicara; setelah semua guru muncul di layar, potret tunggal tidak dipakai lagi
-        if (teachersShown) portraits.hide();
-        else portraits.show(pages[page][0], Dialogs.exprOf(pages[page]));
-    }
-
-    private void showCast()
-    {
-        // semua karakter muncul dengan ekspresi tertawa (cocok dengan "[Semua tertawa.]")
-        String[] bases = { "popi", "teacher_1", "teacher_2", "teacher_3", "teacher_4", "bu_rita" };
-        int[] xs = { 120, 260, 400, 540, 680, 810 };
-        for (int i = 0; i < bases.length; i++)
-        {
-            if (Characters.find(bases[i], "tertawa") == null) continue;   // belum ada gambarnya -> dilewati
-            Teacher t = new Teacher(bases[i], 170);
-            t.setExpression("tertawa");
-            addObject(t, xs[i], 335);
-        }
+        
     }
 
     public void act()

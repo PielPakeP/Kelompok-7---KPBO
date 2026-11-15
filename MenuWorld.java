@@ -38,10 +38,12 @@ public class MenuWorld extends BaseWorld
             // dialog konfirmasi keluar sedang tampil
             if (yesBtn.clicked())
             {
+                SoundManager.sfx("click.mp3");
                 Greenfoot.stop(); // untuk aplikasi hasil export, boleh diganti System.exit(0);
             }
             else if (noBtn.clicked())
             {
+                SoundManager.sfx("click.mp3");
                 removeObject(confirm);
                 removeObject(yesBtn);
                 removeObject(noBtn);
@@ -54,18 +56,22 @@ public class MenuWorld extends BaseWorld
         {
             GameData.newGame();
             Greenfoot.setWorld(new MapWorld(1, true));
+            SoundManager.sfx("click.mp3");
         }
         else if (howBtn.clicked())
         {
             Greenfoot.setWorld(new HowToPlayWorld());
+            SoundManager.sfx("click.mp3");
         }
         else if (settingsBtn.clicked())
         {
             Greenfoot.setWorld(new SettingsWorld());
+            SoundManager.sfx("click.mp3");
         }
         else if (infoBtn.clicked())
         {
             Greenfoot.setWorld(new InfoWorld());
+            SoundManager.sfx("click.mp3");
         }
         else if (exitBtn.clicked())
         {
@@ -75,6 +81,7 @@ public class MenuWorld extends BaseWorld
             noBtn = new Button("btn_no", 170, 50);
             addObject(yesBtn, 360, 395);
             addObject(noBtn, 540, 395);
+            SoundManager.sfx("click.mp3");
         }
     }
 

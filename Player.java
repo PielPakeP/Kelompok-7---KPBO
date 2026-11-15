@@ -37,14 +37,13 @@ public class Player extends Actor
             }
             return;
         }
-
         int dx = 0, dy = 0;
 
         if (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")) dx -= SPEED;
         if (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("d")) dx += SPEED;
         if (Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("w")) dy -= SPEED;
         if (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown("s")) dy += SPEED;
-
+        
         walking = (dx != 0 || dy != 0);
 
         if (dx != 0)
@@ -61,7 +60,7 @@ public class Player extends Actor
                 setLocation(getX(), getY() + dy);
         }
 
-        if (walking) tick++;
+        if (walking)tick++;
         updateImage();
     }
 

@@ -10,6 +10,7 @@ public class SoundManager
 {
     private static GreenfootSound music;
     private static String musicFile = "";
+    
 
     /** Mainkan musik latar (loop). Kalau sudah memainkan file yang sama, tidak diulang dari awal. */
     public static void playMusic(String file)
@@ -58,6 +59,18 @@ public class SoundManager
             {
                 music.pause();
             }
+        }
+        catch (Exception e) { }
+    }
+    
+    public static void sfx(String file)
+    {
+        if (!GameData.sfxOn) return;
+        try
+        {
+            GreenfootSound s = new GreenfootSound(file);
+            s.setVolume(GameData.volume);
+            s.play();
         }
         catch (Exception e) { }
     }

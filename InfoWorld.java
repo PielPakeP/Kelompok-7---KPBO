@@ -12,13 +12,13 @@ public class InfoWorld extends BaseWorld
         GreenfootImage bg = Backgrounds.info();   // panel + judul "Information" sudah ada di gambar bg_info
         String info =
             "SEKOLAH JEMBATAN\n"
-          + "Game memori kartu edukasi - versi 1.0\n\n"
+          + "Game Memori Kartu PPOPIK!!\n\n"
           + "Developer:\n"
-          + LevelData.TEACHER[0] + ", " + LevelData.TEACHER[1] + ", " + LevelData.TEACHER[2] + ", " + LevelData.TEACHER[3] + "\n\n"
+          + "Piel, Aaron, Steven dan Raffael\n\n"
           + "Credits:\n"
-          + "Dibuat dengan Greenfoot\n"
-          + "Musik & efek suara: tiktok/youtube\n"
-          + "Ilustrasi & karakter: Foto kita ber4 ";
+          + "Dibuat dengan Hati\n"
+          + "Musik & efek suara: suara eren nyanyi\n"
+          + "Ilustrasi & karakter: rafael yang gambar";
         Gfx.drawParagraph(bg, info, 22, Gfx.TEXT_DARK, 450, 130, 560, true);
         setBackground(bg);
 
@@ -29,9 +29,10 @@ public class InfoWorld extends BaseWorld
 
     public void act()
     {
-        if (backBtn.clicked() || "escape".equals(Greenfoot.getKey()))
+        if (backBtn.clicked())
         {
             Greenfoot.setWorld(new MenuWorld());
+            SoundManager.sfx("click.mp3");
         }
     }
 }

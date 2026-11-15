@@ -38,7 +38,6 @@ public class Characters
         return 0;
     }
 
-    /** Nama dasar file gambar untuk pembicara. null = tidak punya gambar (narator, Pesan Moral, dll). */
     public static String baseOf(String speaker)
     {
         if (speaker == null) return null;
