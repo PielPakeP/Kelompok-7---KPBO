@@ -5,7 +5,7 @@
 public class GameData
 {
     // ===== Pengaturan (Settings) =====
-    public static boolean musicOn = false;
+    public static boolean musicOn = true;
     public static boolean sfxOn = true;
     public static int volume = 50;       // volume utama 0-100
     

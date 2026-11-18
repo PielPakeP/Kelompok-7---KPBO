@@ -9,10 +9,13 @@ import java.util.*;
  */
 public class GameWorld extends BaseWorld
 {
-    private static final int PREVIEW = 0, PLAYING = 1, WON = 2, LOST = 3;
+    private static final int PREVIEW = 0, PLAYING = 1, WON = 2, LOST = 3, PAUSE = 4;
     private static final long TIME_LIMIT_MS = 60000;   // timer 2 menit
     private static final int CHECK_DELAY = 30;          // jeda (frame) sebelum 2 kartu dicek
-
+    
+    
+    
+    
     private final int level;
     private final long previewMs;
     private final List<Card> cards = new ArrayList<Card>();
@@ -21,9 +24,13 @@ public class GameWorld extends BaseWorld
     private int pairsFound = 0;
     private int totalPairs = 0;
     private int state = PREVIEW;
+    private int previousState;
+    private long customPausedAt = 0;
     private long phaseStart;
     private long startTime;
-
+    
+    private Button pauseBtn, resumeBtn;
+    private ImageActor pausePanel;
     private TimerBar timerBar;
     private MaterialBar materialBar;
     private SpeechBubble bubble;
@@ -57,7 +64,7 @@ public class GameWorld extends BaseWorld
         addObject(timerBar, 195, 40);
 
         String banner = "Kelas " + LevelData.SUBJECT[level - 1] + " - Level " + level + "/" + LevelData.MAX_LEVEL;
-        addObject(new Label(banner, 22, Gfx.TEXT_LIGHT, true), 720, 38);
+        addObject(new Label(banner, 22, Gfx.TEXT_LIGHT, true), 650, 38);
 
         pairLabel = new Label("Pasangan 0/0", 15, Gfx.TEXT_LIGHT, true);
         addObject(pairLabel, 450, 550);
@@ -66,6 +73,8 @@ public class GameWorld extends BaseWorld
         addObject(teacher, 790, 480);
         bubble = new SpeechBubble();
         addObject(bubble, 805, 320);
+        pauseBtn = new Button("btn_pause", 50, 50);
+        addObject(pauseBtn, 850, 40);
     }
 
     private void buildBoard()
@@ -153,19 +162,88 @@ public class GameWorld extends BaseWorld
     public void act()
     {
         long now = System.currentTimeMillis();
+    
+        if ((state == PREVIEW || state == PLAYING) &&
+            pauseBtn != null && pauseBtn.clicked())
+        {
+            pauseGame();
+            return;
+        }
+    
+        if (state == PAUSE)
+        {
+            if (resumeBtn != null && resumeBtn.clicked())
+            {
+                resumeGame();
+            }
+            return;
+        }
+    
         switch (state)
         {
-            case PREVIEW: doPreview(now); break;
-            case PLAYING: doPlaying(now); break;
+            case PREVIEW:
+                doPreview(now);
+                break;
+    
+            case PLAYING:
+                doPlaying(now);
+                break;
+    
             case WON:
                 if (nextBtn.clicked()) goNext();
                 else if (menuBtn.clicked()) Greenfoot.setWorld(new MenuWorld());
                 break;
+    
             case LOST:
                 if (retryBtn.clicked()) Greenfoot.setWorld(new GameWorld(level));
                 else if (menuBtn.clicked()) Greenfoot.setWorld(new MenuWorld());
                 break;
         }
+    }
+    
+    // ---------- fitur pause ----------
+    private void pauseGame()
+    {
+        previousState = state;
+        state = PAUSE;
+    
+        customPausedAt = System.currentTimeMillis();
+    
+        // Hilangkan tombol pause
+        removeObject(pauseBtn);
+        pauseBtn = null;
+    
+        // Tampilkan gambar popup pause
+        pausePanel = new ImageActor(Gfx.img("pause_image", 550, 370));
+        addObject(pausePanel, 450, 270);
+    
+        // Tampilkan tombol lanjut
+        resumeBtn = new Button("btn_continue", 240, 60);
+        addObject(resumeBtn, 450, 430);
+    }
+
+    private void resumeGame()
+    {
+        // Hitung berapa lama permainan di-pause
+        long pausedDuration = System.currentTimeMillis() - customPausedAt;
+    
+        // Geser waktu agar timer tidak menghitung waktu pause
+        phaseStart += pausedDuration;
+        startTime += pausedDuration;
+    
+        // Hilangkan popup dan tombol lanjut
+        removeObject(pausePanel);
+        removeObject(resumeBtn);
+    
+        pausePanel = null;
+        resumeBtn = null;
+    
+        // Kembalikan kondisi permainan sebelumnya
+        state = previousState;
+    
+        // Tampilkan kembali tombol pause
+        pauseBtn = new Button("btn_pause", 50, 50);
+        addObject(pauseBtn, 850, 40);
     }
 
     private void doPreview(long now)
@@ -265,6 +343,11 @@ public class GameWorld extends BaseWorld
     // ---------- menang / kalah ----------
     private void win(long leftMs)
     {
+        if (pauseBtn != null)
+        {
+            removeObject(pauseBtn);
+            pauseBtn = null;
+        }
         state = WON;
         int secs = (int) (leftMs / 1000);
         GameData.materials[level - 1] = true;
@@ -282,6 +365,11 @@ public class GameWorld extends BaseWorld
 
     private void lose()
     {
+        if (pauseBtn != null)
+        {
+            removeObject(pauseBtn);
+            pauseBtn = null;
+        }
         state = LOST;
         react("sedih", "Yah... waktunya habis.");
         addObject(new Popup("WAKTU HABIS!", "Jangan menyerah, coba lagi!"), 450, 300);
