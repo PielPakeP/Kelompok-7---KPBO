@@ -8,7 +8,7 @@ public class LevelData
 
     public static final String[] SUBJECT = { "IPA", "Olahraga", "Musik", "Matematika" };
     public static final String[] TEACHER = { "Piel", "Aaron", "Rafael", "Steven" };
-    public static final String[] MATERIAL = { "Tali", "Papan", "Paku", "Palu" };
+    public static final String[] MATERIAL = { "Batu", "Kayu", "Paku", "Tali" };
 
     // Kalimat pertama guru (sesuai dokumen konsep)
     public static final String[] INTRO = { "halo", "woi", "bisa main ga?", "hidup bu rita" };

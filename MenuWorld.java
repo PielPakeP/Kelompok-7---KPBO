@@ -81,7 +81,7 @@ public class MenuWorld extends BaseWorld
             noBtn = new Button("btn_no", 170, 50);
             addObject(yesBtn, 360, 395);
             addObject(noBtn, 540, 395);
-            SoundManager.sfx("click.mp3");
+            SoundManager.sfx ("click.mp3");
         }
     }
 

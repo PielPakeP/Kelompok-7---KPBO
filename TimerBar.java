@@ -11,7 +11,7 @@ public class TimerBar extends Actor
 
     public TimerBar()
     {
-        update(1.0, 120);
+        update(1.0, 60);
     }
 
     /** frac = sisa waktu 0.0 - 1.0, secs = sisa detik. */
