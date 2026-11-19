@@ -163,19 +163,26 @@ public class GameWorld extends BaseWorld
     {
         long now = System.currentTimeMillis();
     
-        if ((state == PREVIEW || state == PLAYING) &&
-            pauseBtn != null && pauseBtn.clicked())
-        {
-            pauseGame();
-            return;
-        }
-    
         if (state == PAUSE)
         {
             if (resumeBtn != null && resumeBtn.clicked())
             {
+                SoundManager.sfx("click.mp3");
                 resumeGame();
             }
+            else if (menuBtn != null && menuBtn.clicked())
+            {
+                SoundManager.sfx("click.mp3");
+                Greenfoot.setWorld(new MenuWorld());
+            }
+            return;
+        }
+    
+        if ((state == PREVIEW || state == PLAYING) &&
+            pauseBtn != null && pauseBtn.clicked())
+        {
+            SoundManager.sfx("click.mp3");
+            pauseGame();
             return;
         }
     
@@ -190,13 +197,29 @@ public class GameWorld extends BaseWorld
                 break;
     
             case WON:
-                if (nextBtn.clicked()) goNext();
-                else if (menuBtn.clicked()) Greenfoot.setWorld(new MenuWorld());
+                if (nextBtn != null && nextBtn.clicked())
+                {
+                    SoundManager.sfx("click.mp3");
+                    goNext();
+                }
+                else if (menuBtn != null && menuBtn.clicked())
+                {
+                    SoundManager.sfx("click.mp3");
+                    Greenfoot.setWorld(new MenuWorld());
+                }
                 break;
     
             case LOST:
-                if (retryBtn.clicked()) Greenfoot.setWorld(new GameWorld(level));
-                else if (menuBtn.clicked()) Greenfoot.setWorld(new MenuWorld());
+                if (retryBtn != null && retryBtn.clicked())
+                {
+                    SoundManager.sfx("click.mp3");
+                    Greenfoot.setWorld(new GameWorld(level));
+                }
+                else if (menuBtn != null && menuBtn.clicked())
+                {
+                    SoundManager.sfx("click.mp3");
+                    Greenfoot.setWorld(new MenuWorld());
+                }
                 break;
         }
     }
@@ -209,17 +232,15 @@ public class GameWorld extends BaseWorld
     
         customPausedAt = System.currentTimeMillis();
     
-        // Hilangkan tombol pause
         removeObject(pauseBtn);
         pauseBtn = null;
     
-        // Tampilkan gambar popup pause
         pausePanel = new ImageActor(Gfx.img("pause_image", 550, 370));
-        addObject(pausePanel, 450, 270);
-    
-        // Tampilkan tombol lanjut
+        addObject(pausePanel, 450, 240);
         resumeBtn = new Button("btn_continue", 240, 60);
-        addObject(resumeBtn, 450, 430);
+        addObject(resumeBtn, 450, 400);
+        menuBtn = new Button("btn_menu_wide", 220, 56);
+        addObject(menuBtn, 450, 460);
     }
 
     private void resumeGame()
@@ -234,6 +255,7 @@ public class GameWorld extends BaseWorld
         // Hilangkan popup dan tombol lanjut
         removeObject(pausePanel);
         removeObject(resumeBtn);
+        removeObject(menuBtn);
     
         pausePanel = null;
         resumeBtn = null;

@@ -14,7 +14,7 @@ import java.awt.Color;
  */
 public class MapWorld extends BaseWorld
 {
-    private static final boolean DEBUG = false;        // true = tampilkan kotak tabrakan (merah) & pintu (kuning), untuk menyetel peta baru
+    private static final boolean DEBUG = true;        // true = tampilkan kotak tabrakan (merah) & pintu (kuning), untuk menyetel peta baru
     private static final double S = 900.0 / 1536.0;    // skala gambar asli -> layar
 
     // Area yang tidak bisa dilewati: { kiri, atas, kanan, bawah }
@@ -37,7 +37,16 @@ public class MapWorld extends BaseWorld
         { 1318, 775, 1400, 850 },                          // pos kecil
         { 235, 720, 312, 800 }, { 385, 715, 470, 780 }, { 435, 745, 525, 850 },
         { 570, 715, 660, 800 }, { 860, 715, 945, 800 }, { 1005, 745, 1100, 850 },
-        { 1175, 750, 1260, 850 }, { 1115, 640, 1195, 725 }  // pohon bagian bawah
+        { 1175, 750, 1260, 850 }, { 1115, 640, 1195, 725 },  // pohon bagian bawah
+        { 1115, 640, 1195, 725 },  // pohon bagian bawah
+        { 85, 440, 115, 500 }, { 85, 575, 115, 635 },    // Bangku sekitar lapangan
+        { 550, 435, 580, 505 }, { 550, 570, 580, 640 },  // Bangku taman tengah
+        { 970, 435, 1000, 505 }, { 970, 570, 1000, 640 },
+        { 325, 725, 380, 750 },
+        { 1330, 780, 1405, 820 },   // Bangku taman bawah
+        { 105, 370, 355, 385 },     // Batas lapangan
+        { 105, 690, 355, 705 },
+        { 105, 370, 120, 705 }
     };
 
     // Zona pintu masuk: 0 = IPA, 1 = Olahraga, 2 = Musik, 3 = Matematika, 4 = Jembatan
